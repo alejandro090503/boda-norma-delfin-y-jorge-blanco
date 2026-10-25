@@ -581,7 +581,7 @@ body{font-weight:500}
 .dc-viewer-close svg{width:18px;height:18px}
 .dc-avoid-block{margin-top:8px}
 .dc-avoid{font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:.8px;color:var(--gold-dark)}
-.dc-swatches{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:16px auto 0}
+.dc-swatches{display:flex;gap:18px;justify-content:center;flex-wrap:nowrap;margin:16px auto 0}
 .dc-sw{display:flex;flex-direction:column;align-items:center;gap:9px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text)}
 .dc-swatch-dot{width:30px;height:30px;border-radius:50%;display:inline-block;box-shadow:0 4px 14px rgba(42,11,51,.18);position:relative}
 .dc-swatch-dot::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px dashed rgba(42,11,51,.35)}
@@ -653,6 +653,168 @@ body{font-weight:500}
   .smenu,.smenu-list li{transition:opacity .2s!important}
 }
 
+
+/* ═════════ PAQUETE DE EFECTOS v2 ═════════ */
+/* 1. Hero abajo + deriva + brillo */
+#hero{align-items:flex-end}
+.hero-content{padding-bottom:172px!important}
+@media(min-width:1024px){.hero-content{padding-bottom:110px!important}}
+.scroll-hint{display:flex!important;bottom:92px}
+@media(min-width:1024px){.scroll-hint{bottom:30px}}
+.hero-bg-in{display:none}
+.hero-drift{position:absolute;inset:-3%;background:url('hero.jpg') center 28%/cover no-repeat;animation:heroDrift 26s ease-in-out infinite alternate}
+@keyframes heroDrift{0%{transform:translate3d(0,0,0) scale(1.02)}50%{transform:translate3d(-1.6%,-1%,0) scale(1.07)}100%{transform:translate3d(1.2%,-2%,0) scale(1.10)}}
+.hero-shine{position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:soft-light;background:linear-gradient(115deg,transparent 30%,rgba(255,240,215,.55) 46%,rgba(255,255,255,.25) 52%,transparent 66%);background-size:260% 100%;animation:heroShine 9s ease-in-out infinite}
+@keyframes heroShine{0%{background-position:120% 0}100%{background-position:-60% 0}}
+.hero-veil{z-index:1;background:linear-gradient(to bottom,rgba(42,11,51,.22) 0%,rgba(42,11,51,.05) 30%,rgba(30,6,38,.30) 52%,rgba(30,6,38,.78) 74%,rgba(24,4,30,.93) 100%)!important}
+.hero-frame{z-index:2}
+#hero::after{display:none!important}
+
+/* 2. Fundidos uniformes entre secciones */
+.wrap>section,.wrap>footer{isolation:isolate}
+.fz::before,.fz::after{content:''!important;position:absolute!important;left:0!important;right:0!important;height:var(--fh,170px)!important;pointer-events:none!important;z-index:-1!important;animation:none!important;inset:auto 0 auto 0}
+.fz::before{top:0!important;bottom:auto!important;background:var(--ft,none)!important}
+.fz::after{bottom:0!important;top:auto!important;background:var(--fb,none)!important}
+#hero.fz::after{display:block!important;z-index:3!important;height:90px!important}
+
+/* 3. Tintas */
+.ink-bg{position:absolute;inset:0;z-index:-2;overflow:hidden;pointer-events:none;opacity:.48;-webkit-mask-image:linear-gradient(transparent 0,#000 150px,#000 calc(100% - 150px),transparent);mask-image:linear-gradient(transparent 0,#000 150px,#000 calc(100% - 150px),transparent)}
+.ink-bg.flip{transform:scaleX(-1)}
+.ink-bg.oval{opacity:.85}
+#vestimenta .ink-bg,#salbum .ink-bg{opacity:.38}
+.ink-bg i{position:absolute;inset:-6%;background-position:center;background-size:cover;animation:inkDrift 28s ease-in-out infinite alternate}
+@keyframes inkDrift{0%{transform:translate3d(0,0,0) scale(1) rotate(0)}50%{transform:translate3d(-2.5%,1.5%,0) scale(1.06) rotate(.6deg)}100%{transform:translate3d(2%,-2.5%,0) scale(1.1) rotate(-.6deg)}}
+.has-ink .eyebrow,.has-ink .heading,.has-ink .heading-sm,.has-ink .sub,.has-ink p,.has-ink .dc-fig-label,.has-ink .itv3-time,.has-ink .itv3-ev{text-shadow:0 0 14px rgba(252,248,242,.95),0 0 4px rgba(252,248,242,.9)}
+.has-ink .card,.has-ink .fam-card{background:rgba(255,253,249,.94)}
+
+/* 4. Levitar y ondear */
+@keyframes levitate{0%,100%{translate:0 0;rotate:-.6deg}50%{translate:0 -9px;rotate:.6deg}}
+.loc-card,.fam-card,.hosp-card,.dc-fig img{animation:levitate 6.5s ease-in-out infinite}
+.fam-grid .fam-card:nth-child(2),.loc-card+.loc-divider+.loc-card,.dc-fig:nth-child(2) img{animation-delay:-2.2s}
+#familias>.fam-card{animation-delay:-4.1s}
+.dc-fig img{transform-origin:50% 100%}
+
+/* 5. Dress code: figuras en 2 columnas */
+.dc-figures{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:360px;margin:6px auto 30px;align-items:end}
+.dc-fig{display:flex;flex-direction:column;align-items:center;gap:14px}
+.dc-fig img{height:230px;width:auto;max-width:100%;display:block;filter:drop-shadow(0 8px 14px rgba(42,11,51,.24))}
+.dc-fig-label{font-family:'Jost',sans-serif;font-size:15px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.dc-swatches{position:relative}
+.dc-sw{width:64px}
+.dc-swatch-dot{width:36px!important;height:36px!important;overflow:hidden;animation:swGlow 2.8s ease-in-out infinite}
+.dc-swatch-dot::before{content:'';position:absolute;inset:0;border-radius:50%;background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);background-size:300% 100%;animation:swSheen 3.6s ease-in-out infinite}
+@keyframes swGlow{0%,100%{box-shadow:0 4px 14px rgba(42,11,51,.18),0 0 0 0 rgba(212,175,55,0)}50%{box-shadow:0 4px 14px rgba(42,11,51,.18),0 0 16px 3px rgba(212,175,55,.6)}}
+@keyframes swSheen{0%{background-position:130% 0}60%,100%{background-position:-60% 0}}
+.dc-swatches .dc-sw:nth-child(1){animation:swapR 7s cubic-bezier(.65,0,.35,1) infinite}
+.dc-swatches .dc-sw:nth-child(2){animation:swapL 7s cubic-bezier(.65,0,.35,1) infinite}
+.dc-swatches .dc-sw:nth-child(3){animation:swapR 7s cubic-bezier(.65,0,.35,1) infinite;animation-delay:-3.5s}
+.dc-swatches .dc-sw:nth-child(4){animation:swapL 7s cubic-bezier(.65,0,.35,1) infinite;animation-delay:-3.5s}
+@keyframes swapR{0%,18%{transform:translate(0,0)}34%{transform:translate(41px,-14px)}50%,68%{transform:translate(82px,0)}84%{transform:translate(41px,14px)}100%{transform:translate(0,0)}}
+@keyframes swapL{0%,18%{transform:translate(0,0)}34%{transform:translate(-41px,14px)}50%,68%{transform:translate(-82px,0)}84%{transform:translate(-41px,-14px)}100%{transform:translate(0,0)}}
+.dc-swatches{gap:18px!important}
+.dc-sw span:last-child{font-size:14px}
+
+/* 6. Lluvia de sobres */
+#regalos{background:var(--bg)!important;animation:none!important;overflow:hidden}
+#regalos .eyebrow{color:var(--gold)!important}
+#regalos .heading-sm{color:var(--dark)}
+#regalos .gift-msg{color:var(--text);font-weight:500;max-width:330px;margin:18px auto 0}
+.env-rain{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.env-rain-item{position:absolute;top:-50px;left:0;will-change:transform}
+#regalos .env-stage{position:relative;z-index:1}
+.env-interactive{display:flex;flex-direction:column;align-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;outline:none;border:none;background:none;padding:0;margin:26px auto 0;color:inherit}
+.env-body{perspective:700px;position:relative;width:min(258px,74vw);aspect-ratio:260/200;filter:drop-shadow(0 12px 26px rgba(42,11,51,.24))}
+.env-body svg.env-svg{width:100%;height:100%;display:block}
+.env-flap-wrap{position:absolute;top:23%;left:6.9%;width:86.2%;height:43%;transform-origin:top center;transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:2}
+.env-interactive.open .env-flap-wrap{transform:rotateX(-175deg)}
+.env-seal{position:absolute;top:52%;left:50%;width:23%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:3;transition:opacity .35s ease,transform .5s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.env-interactive.open .env-seal{opacity:0;transform:translate(-50%,-50%) scale(.7)}
+.env-open-content{overflow:hidden;max-height:0;opacity:0;transition:max-height .55s .3s ease,opacity .4s .38s ease;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 16px;text-align:center}
+.env-interactive.open .env-open-content{max-height:320px;opacity:1;margin-top:20px}
+.env-mailbox-icon{width:42px;height:42px;color:var(--gold);margin-top:6px}
+.env-title{color:var(--accent);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:clamp(26px,7vw,32px);line-height:1.25}
+.env-desc{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--text);line-height:1.6;max-width:300px}
+.env-tap-hint{display:inline-block;border:none;background:none;cursor:pointer;touch-action:manipulation;font-family:'Jost',sans-serif;font-size:14px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-top:18px;padding:12px 18px;min-height:44px;animation:envHintPulse 2.4s ease-in-out infinite}
+@keyframes envHintPulse{0%,100%{opacity:.6}50%{opacity:1}}
+.env-body.landed{animation:envBreathe 3.6s ease-in-out infinite}
+@keyframes envBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+
+/* 7. Hospedaje Lista/Mapa */
+.hv-switch{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;padding:5px;border-radius:999px;background:var(--card);border:1px solid rgba(212,175,55,.5);box-shadow:0 8px 24px -10px rgba(42,11,51,.25);margin:6px auto 26px}
+.hv-ind{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:999px;background:linear-gradient(140deg,#a45cc6,var(--accent) 55%,#4a0f55);transition:transform .45s cubic-bezier(.3,.9,.3,1)}
+.hv-switch.mapa .hv-ind{transform:translateX(100%)}
+.hv-btn{position:relative;z-index:1;min-width:104px;min-height:44px;border:none;background:none;cursor:pointer;font-family:'Jost',sans-serif;font-weight:600;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--text);transition:color .3s}
+.hv-btn.on{color:#fff}
+.pmap-frame{position:relative;height:580px;max-height:78vh;border-radius:28px;overflow:hidden;border:1.5px solid transparent;background:linear-gradient(#1b0822,#1b0822) padding-box,var(--foil) border-box;box-shadow:0 26px 60px -20px rgba(42,11,51,.5)}
+.pmap-frame::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:500;border-radius:28px;box-shadow:inset 0 0 60px rgba(20,4,26,.55)}
+.pmap{position:absolute;inset:0;background:#1b0822}
+.pmap .leaflet-tile-pane{filter:sepia(.35) hue-rotate(235deg) saturate(1.6) brightness(.95)}
+.pmap-ctrl{position:absolute;right:12px;top:12px;z-index:600;display:flex;flex-direction:column;gap:8px}
+.pmap-ctrl button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(212,175,55,.6);background:rgba(27,8,34,.85);color:#F3DC8E;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pmap-ctrl svg{width:18px;height:18px}
+.pmap-tip{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:600;margin:0;white-space:nowrap;padding:10px 18px;border-radius:999px;background:rgba(252,248,242,.94);font-family:'Jost',sans-serif;font-weight:600;font-size:13px;color:var(--dark);box-shadow:0 8px 20px rgba(0,0,0,.3);transition:opacity .3s}
+.pmk-num{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-weight:700;font-size:16px;color:#fff;background:linear-gradient(140deg,#a45cc6,#7a219e 55%,#4a0f55);border:2px solid #D4AF37;box-shadow:0 0 0 0 rgba(212,175,55,.6);animation:pmkPulse 2.2s ease-out infinite}
+@keyframes pmkPulse{0%{box-shadow:0 0 0 0 rgba(212,175,55,.55)}100%{box-shadow:0 0 0 14px rgba(212,175,55,0)}}
+.pmk-pill{position:relative;white-space:nowrap;padding:8px 14px;border-radius:999px;background:#FCF8F2;color:#4a0f55;font-family:'Jost',sans-serif;font-weight:700;font-size:13px;box-shadow:0 6px 18px rgba(0,0,0,.4);border:1.5px solid #D4AF37}
+.pmk-pill::after{content:'';position:absolute;left:50%;bottom:-7px;margin-left:-7px;border:7px solid transparent;border-bottom:0;border-top-color:#FCF8F2}
+.leaflet-div-icon{background:none!important;border:none!important}
+.pmap-route{stroke-dasharray:6 10;animation:pmRoute 1.2s linear infinite}
+@keyframes pmRoute{to{stroke-dashoffset:-16}}
+.pmap-card{position:absolute;left:12px;right:12px;bottom:12px;z-index:700;padding:20px 18px 18px;border-radius:20px;background:rgba(27,8,34,.96);border:1px solid rgba(212,175,55,.5);color:#F7E7CE;text-align:left;transform:translateY(130%);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.pmap-card.on{transform:none}
+.pmap-x{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(212,175,55,.5);background:none;color:#F3DC8E;cursor:pointer}
+.pmap-num{display:inline-flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-weight:700;background:#D4AF37;color:#2a0b33;margin-bottom:8px}
+.pmap-type{font-family:'Jost',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#D4AF37;margin:0}
+.pmap-name{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:26px;margin:2px 0 4px;color:#fff}
+.pmap-addr,.pmap-dist{font-family:'Jost',sans-serif;font-size:15px;font-weight:500;margin:0 0 4px;color:#F7E7CE}
+.pmap-btns{display:flex;gap:10px;margin-top:12px}
+.pmap-btns a{flex:1;min-height:46px;display:flex;align-items:center;justify-content:center;border-radius:999px;text-decoration:none;font-family:'Jost',sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(140deg,#F3DC8E,#D4AF37 50%,#9A7A1E);color:#2a0b33}
+
+/* 8. Carrusel 3D con espejo */
+.wheel-stage{display:none!important}
+.c3d-scene{position:relative;height:430px;margin:26px auto 0;perspective:1100px;overflow:visible;touch-action:pan-y}
+.c3d-ring{position:absolute;inset:0;transform-style:preserve-3d;cursor:grab}
+.c3d-card{position:absolute;left:50%;top:44%;width:150px;height:210px;margin:-105px 0 0 -75px;border-radius:14px;border:2px solid rgba(212,175,55,.55);box-shadow:0 14px 34px rgba(42,11,51,.28);user-select:none;-webkit-user-select:none}
+.c3d-card img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;pointer-events:none}
+.c3d-refl{position:absolute;left:0;right:0;top:calc(100% + 6px);height:46%;border-radius:12px;background-size:cover;background-position:center bottom;transform:scaleY(-1);opacity:.55;pointer-events:none}
+.c3d-refl::after{content:'';position:absolute;inset:0;border-radius:12px;background:linear-gradient(to top,rgba(252,248,242,.35) 0%,rgba(252,248,242,1) 75%)}
+.c3d-hint{font-family:'Jost',sans-serif;font-weight:600;font-size:14px;letter-spacing:.14em;color:var(--accent);margin-top:4px}
+
+/* 9. RSVP */
+.rsvp-hi{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:32px;color:var(--accent);margin-top:18px;line-height:1.2}
+.rsvp-note{font-family:'Jost',sans-serif;font-size:17px;font-weight:500;color:var(--text);margin-top:6px}
+.rsvp-boxes{display:flex;justify-content:center;gap:12px;margin:16px auto 6px}
+.rsvp-box{display:inline-flex;flex-direction:column;align-items:center;padding:12px 26px;border:1px solid rgba(212,175,55,.6);border-radius:16px;background:var(--surface)}
+.rsvp-box-label{font-family:'Jost',sans-serif;font-weight:600;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--sage)}
+.rsvp-box-num{font-family:'Jost',sans-serif;font-weight:700;font-size:46px;line-height:1.05;color:var(--accent)}
+.rsvp-dl{font-family:'Jost',sans-serif;font-weight:600;font-size:16px;color:var(--text);margin:10px 0 0}
+#rsvp-bandeja{max-width:400px;margin:22px auto 0}
+.rsvp-toggle2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rsvp-tg{min-height:52px;border-radius:14px;border:1.5px solid var(--border);background:var(--card);font-family:'Jost',sans-serif;font-weight:600;font-size:15px;color:var(--text);cursor:pointer;transition:all .25s}
+.rsvp-tg.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.rsvp-fields2{margin:16px 0 4px;display:grid;gap:10px}
+.rsvp-input{width:100%;min-height:52px;padding:12px 16px;border-radius:12px;border:1.5px solid rgba(122,33,158,.35);background:#fff;font-family:'Jost',sans-serif;font-weight:500;font-size:16px;color:var(--text);outline:none}
+.rsvp-input::placeholder{color:#6d5a73}
+.rsvp-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(122,33,158,.18)}
+#rsvp-bandeja .btn-rsvp{margin-top:16px;max-width:none;font-family:'Jost',sans-serif;font-style:normal;font-size:15px;letter-spacing:.16em;text-transform:uppercase}
+.rsvp-gracias{max-width:380px;margin:22px auto 0;padding:26px 20px;background:var(--surface);border:1.5px solid rgba(212,175,55,.55);border-radius:16px}
+.rsvp-gracias-icon{color:var(--accent);margin:0 auto 10px;display:block}
+.rsvp-gracias-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.3}
+.rsvp-gracias-sub{font-family:'Jost',sans-serif;font-size:17px;font-weight:500;color:var(--text);line-height:1.6;margin-bottom:18px}
+.rsvp-editar-btn{min-height:46px;padding:10px 22px;border:1.5px solid var(--accent);background:transparent;cursor:pointer;font-family:'Jost',sans-serif;font-weight:600;font-size:14px;color:var(--accent);border-radius:999px}
+.rsvp-editar-btn:disabled{opacity:.45;cursor:not-allowed}
+#rsvp-feedback{margin-top:14px;font-family:'Jost',sans-serif;font-weight:600;font-size:15px;min-height:22px}
+#rsvp-feedback.err{color:#a1123a}#rsvp-feedback.ok{color:var(--accent)}
+
+/* 10. Script/foil sin cortes */
+.foil-txt,.env-title{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hero-amp.foil-txt{display:inline-block}
+.snav-mono .foil-txt{padding:.22em .3em;margin:-.22em -.3em}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-drift,.hero-shine,.ink-bg i,.loc-card,.fam-card,.hosp-card,.dc-fig img,.dc-sw,.dc-swatch-dot,.dc-swatch-dot::before,.env-body.landed,.env-tap-hint,.pmk-num,.pmap-route{animation:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -672,7 +834,8 @@ body{font-weight:500}
 
   <!-- HERO -->
   <section id="hero" data-nav="Inicio">
-    <div class="hero-bg"><div class="hero-bg-in"></div></div>
+    <div class="hero-bg"><i class="hero-drift"></i></div>
+    <div class="hero-shine" aria-hidden="true"></div>
     <div class="hero-veil"></div>
     <div class="hero-frame">
       <div class="hero-corner hc-tl"><svg viewBox="0 0 24 24" fill="none"><path d="M1 1L1 11M1 1L11 1" stroke="#fff" stroke-width="1.4" opacity=".7"/></svg></div>
@@ -695,7 +858,7 @@ body{font-weight:500}
   </section>
 
   <!-- INVITACIÓN -->
-  <section class="sec rv" style="text-align:center">
+  <section id="invitacion" class="sec rv" style="text-align:center">
     <span class="eyebrow">Con la gracia de Dios</span>
     <div class="orn"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <h1 class="heading heading-names">Norma<br><span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;color:var(--gold);display:block;margin:4px 0">y</span>Jorge</h1>
@@ -841,33 +1004,9 @@ body{font-weight:500}
     <div class="orn" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <p class="dc-note">Acompáñanos vestido para la ocasión</p>
 
-    <div class="dc-looks">
-      <button class="dc-look" type="button" data-look="caballeros" aria-label="Ver ideas de vestimenta para caballeros">
-        <span class="dc-look-ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l4 3 4-3 3 2.2c1.2.9 1.9 2.3 1.9 3.8V21H3V9c0-1.5.7-2.9 1.9-3.8L8 3z"/><path d="M12 6v15"/><path d="M9.4 4.2L12 9l2.6-4.8"/></svg>
-        </span>
-        <span class="dc-look-txt"><span class="dc-look-rol">Caballeros</span><span class="dc-look-cta">Ver ideas</span></span>
-        <span class="dc-look-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-      </button>
-      <button class="dc-look" type="button" data-look="damas" aria-label="Ver ideas de vestimenta para damas">
-        <span class="dc-look-ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l-1.4 5.2L21 21H3l7.4-12.8L9 3z"/><path d="M10.6 8.2h2.8"/></svg>
-        </span>
-        <span class="dc-look-txt"><span class="dc-look-rol">Damas</span><span class="dc-look-cta">Ver ideas</span></span>
-        <span class="dc-look-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-      </button>
-    </div>
-
-    <div class="dc-viewer" id="dcViewer" role="dialog" aria-modal="true" aria-label="Ideas de vestimenta" hidden>
-      <div class="dcv-box">
-        <button class="dc-viewer-close" id="dcViewerClose" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-        <p class="dcv-head" id="dcvHead"></p>
-        <div class="dcv-viewport"><div class="dcv-track" id="dcvTrack"></div></div>
-        <button class="dcv-nav dcv-prev" id="dcvPrev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
-        <button class="dcv-nav dcv-next" id="dcvNext" type="button" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-        <p class="dcv-cap" id="dcvCap"></p>
-        <div class="dcv-dots" id="dcvDots"></div>
-      </div>
+    <div class="dc-figures">
+      <div class="dc-fig"><img src="caballero.png" alt="Ilustración de caballero con traje formal"><span class="dc-fig-label">Caballeros</span></div>
+      <div class="dc-fig"><img src="dama.png" alt="Ilustración de dama con vestido largo formal"><span class="dc-fig-label">Damas</span></div>
     </div>
 
     <div class="dc-avoid-block">
@@ -885,39 +1024,81 @@ body{font-weight:500}
 
   <!-- MESA DE REGALOS -->
   <section id="regalos" class="sec rv" style="text-align:center">
-    <span class="eyebrow">Mesa de Regalos</span>
-    <h2 class="heading" style="color:rgba(212,175,55,.9)">Un Obsequio</h2>
-    <div class="orn" style="margin-top:16px"><div class="orn-line" style="background:linear-gradient(to right,transparent,rgba(122,33,158,.3),transparent)"></div><div class="orn-diamond-sm" style="background:rgba(212,175,55,.9)"></div><div class="orn-diamond" style="background:rgba(212,175,55,.9)"></div><div class="orn-diamond-sm" style="background:rgba(212,175,55,.9)"></div><div class="orn-line" style="background:linear-gradient(to right,transparent,rgba(122,33,158,.3),transparent)"></div></div>
-    <p class="gift-msg rv">Tu presencia es nuestro regalo más preciado.<br>Si deseas honrarnos con un obsequio,<br>con infinita gratitud lo recibimos.</p>
-    <div class="gift-box-wrap rv">
-      <div class="gbx" data-store="sobres">
-        <button type="button" class="gbx-present" aria-label="Abrir — Lluvia de sobres">
-          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs><linearGradient id="giftGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8a6a12"/><stop offset="35%" stop-color="#FBEFC0"/><stop offset="55%" stop-color="#D4AF37"/><stop offset="80%" stop-color="#F3DC8E"/><stop offset="100%" stop-color="#9A7A1E"/></linearGradient></defs>
-            <rect x="18" y="38" width="84" height="58" rx="5" fill="#F7E7CE"/>
-            <path d="M18 43 L60 72 L102 43" fill="none" stroke="#9A7A1E" stroke-width="2"/>
-            <g class="gbx-lid"><path d="M18 40 L60 70 L102 40 Z" fill="#efdcbc" stroke="#9A7A1E" stroke-width="1.5"/></g>
-            <circle cx="60" cy="68" r="9" fill="url(#giftGold)"/>
+    <div class="env-rain" id="envRain" aria-hidden="true"></div>
+    <div class="env-stage">
+      <span class="eyebrow">Mesa de Regalos</span>
+      <h2 class="heading-sm">Lluvia de Sobres</h2>
+      <div class="orn" style="margin-top:14px;margin-bottom:0"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
+      <p class="gift-msg">Tu presencia es nuestro regalo más preciado. Si deseas honrarnos con un obsequio, con infinita gratitud lo recibimos.</p>
+      <button class="env-interactive" id="envGift" type="button" aria-label="Sobre — toca para abrir" aria-expanded="false">
+        <div class="env-body" id="envGiftBody">
+          <svg class="env-svg" viewBox="0 0 260 200" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="envPaper" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#FBF1DF"/><stop offset="100%" stop-color="#FFF9EE"/></linearGradient>
+              <linearGradient id="envGoldLine" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9A7A1E"/><stop offset="50%" stop-color="#F3DC8E"/><stop offset="100%" stop-color="#9A7A1E"/></linearGradient>
+            </defs>
+            <rect x="18" y="52" width="224" height="132" rx="8" fill="url(#envPaper)" stroke="url(#envGoldLine)" stroke-width="2"/>
+            <path d="M18 184 L130 110 L242 184" stroke="rgba(154,122,30,.45)" stroke-width="1.2" fill="none"/>
           </svg>
-        </button>
-        <p class="gbx-tap" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(212,175,55,.9);margin-top:8px;transition:opacity .3s">Toca el sobre</p>
-        <div class="gbx-reveal">
-          <p class="gift-bank-lbl" style="margin-top:6px">Lluvia de sobres</p>
-          <p class="gift-detail" style="max-width:280px;margin:0 auto">El día de la boda habrá un buzón en la recepción para que deposites tu sobre con tu muestra de cariño.</p>
+          <div class="env-flap-wrap" aria-hidden="true">
+            <svg viewBox="0 0 224 86" preserveAspectRatio="none" style="width:100%;height:100%;display:block">
+              <defs><linearGradient id="envFlap" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#F7E7CE"/><stop offset="100%" stop-color="#FFF8EC"/></linearGradient></defs>
+              <path d="M0 0 L112 86 L224 0 Z" fill="url(#envFlap)" stroke="#B8922A" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <svg class="env-seal" viewBox="0 0 60 60" aria-hidden="true">
+            <circle cx="30" cy="30" r="28" fill="#7a219e"/>
+            <circle cx="30" cy="30" r="28" fill="none" stroke="#4a0f55" stroke-width="2" opacity=".6"/>
+            <circle cx="30" cy="30" r="21.5" fill="none" stroke="#F3DC8E" stroke-width="1.1" opacity=".9"/>
+            <text x="30" y="36" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="700" font-size="17" fill="#F3DC8E">N&amp;J</text>
+          </svg>
         </div>
-      </div>
+        <div class="env-open-content" aria-live="polite">
+          <svg class="env-mailbox-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="22" width="36" height="24" rx="5"/><path d="M8 30 Q26 38 44 30"/><rect x="18" y="8" width="16" height="16" rx="2"/><path d="M18 8 Q26 3 34 8"/></svg>
+          <p class="env-title">Tu presencia es nuestro regalo</p>
+          <p class="env-desc">El día de la boda habrá un buzón en la recepción para que deposites tu sobre con tu muestra de cariño.</p>
+        </div>
+      </button>
+      <button class="env-tap-hint" id="envGiftHint" type="button">Toca para abrir</button>
     </div>
   </section>
 
   <!-- HOSPEDAJE -->
   <section id="hospedaje" class="sec rv" style="text-align:center">
     <span class="eyebrow">Para tu estancia</span>
-    <h2 class="heading-sm">Sugerencia de Hospedaje</h2>
+    <h2 class="heading-sm">Hospedaje y Sedes</h2>
     <div class="orn" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
-    <!-- PENDIENTE: hoteles sugeridos -->
-    <div class="card hosp-card" style="max-width:340px;margin:26px auto 0">
-      <p class="sub" style="font-size:18px;color:var(--text)">Si vienes de fuera, muy pronto compartiremos aquí opciones de hospedaje cercanas.</p>
-      <p class="hosp-city" style="margin:14px 0 0">Por confirmar</p>
+    <div class="hv-switch" role="tablist" aria-label="Vista">
+      <span class="hv-ind" id="hvInd" aria-hidden="true"></span>
+      <button type="button" role="tab" class="hv-btn on" id="hvLista" aria-selected="true">Lista</button>
+      <button type="button" role="tab" class="hv-btn" id="hvMapa" aria-selected="false">Mapa</button>
+    </div>
+    <div class="hv-panel" id="hvPanelLista">
+      <!-- PENDIENTE: hoteles sugeridos (fotos de Booking, dirección, distancia a la recepción) -->
+      <div class="card hosp-card" style="max-width:340px;margin:0 auto">
+        <p class="sub" style="font-size:18px;color:var(--text)">Si vienes de fuera, muy pronto compartiremos aquí hoteles cercanos a la recepción.</p>
+        <p class="hosp-city" style="margin:14px 0 0">Por confirmar</p>
+      </div>
+    </div>
+    <div class="hv-panel" id="hvPanelMapa" hidden>
+      <div class="pmap-frame">
+        <div class="pmap" id="pmap" aria-label="Mapa de las sedes"></div>
+        <div class="pmap-ctrl">
+          <button type="button" id="pmapIn" aria-label="Acercar">+</button>
+          <button type="button" id="pmapOut" aria-label="Alejar">−</button>
+          <button type="button" id="pmapAll" aria-label="Ver todo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+        </div>
+        <p class="pmap-tip" id="pmapTip">Toca una sede para ver los detalles</p>
+        <div class="pmap-card" id="pmapCard" aria-live="polite">
+          <button type="button" class="pmap-x" id="pmapX" aria-label="Cerrar">✕</button>
+          <div class="pmap-num" id="pmapNum">1</div>
+          <p class="pmap-type" id="pmapType"></p>
+          <p class="pmap-name" id="pmapName"></p>
+          <p class="pmap-addr" id="pmapAddr"></p>
+          <p class="pmap-dist" id="pmapDist"></p>
+          <div class="pmap-btns"><a id="pmapGo" target="_blank" rel="noopener">Ver ubicación</a></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -926,22 +1107,17 @@ body{font-weight:500}
     <span class="eyebrow rv" style="color:var(--sage)">Nuestros Momentos</span>
     <h2 class="heading-sm rv">Álbum</h2>
     <div class="orn rv" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
-    <div class="wheel-stage">
-      <div id="wheel-spark-layer" aria-hidden="true"></div>
-      <div class="wheel" id="wheel">
-        <span class="wheel-spoke" aria-hidden="true"></span>
-        <span class="wheel-spoke wheel-spoke--inner" aria-hidden="true"></span>
-        <div class="wheel-item" style="--i:0"><div class="wheel-item-inner"><img src="g01.jpg" alt="Norma y Jorge" loading="lazy"></div></div>
-        <div class="wheel-item" style="--i:1"><div class="wheel-item-inner"><img src="g02.jpg" alt="Norma y Jorge" loading="lazy"></div></div>
-        <div class="wheel-item" style="--i:2"><div class="wheel-item-inner"><img src="g03.jpg" alt="Norma y Jorge" loading="lazy"></div></div>
-        <div class="wheel-item" style="--i:3"><div class="wheel-item-inner"><img src="g04.jpg" alt="Norma y Jorge" loading="lazy"></div></div>
-        <div class="wheel-item" style="--i:4"><div class="wheel-item-inner"><img src="g06.jpg" alt="Norma y Jorge" loading="lazy"></div></div>
-        <div class="wheel-item" style="--i:5"><div class="wheel-item-inner"><img src="g05.jpg" alt="Norma y Jorge" loading="lazy"></div></div>
-      </div>
-      <div class="wheel-hub" aria-hidden="true">
-        <svg viewBox="0 0 60 60" fill="none"><g stroke="currentColor" stroke-width=".8"><circle cx="30" cy="30" r="18" opacity=".4"/><circle cx="30" cy="30" r="10"/><circle cx="30" cy="30" r="3" fill="currentColor"/><path d="M30 14L30 20M30 40L30 46M14 30L20 30M40 30L46 30" opacity=".55"/></g></svg>
+    <div class="c3d-scene" id="c3dScene" aria-label="Galería de fotos — arrastra para girar">
+      <div class="c3d-ring" id="c3dRing">
+        <div class="c3d-card"><img src="g01.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g01.jpg')"></i></div>
+        <div class="c3d-card"><img src="g02.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g02.jpg')"></i></div>
+        <div class="c3d-card"><img src="g03.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g03.jpg')"></i></div>
+        <div class="c3d-card"><img src="g04.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g04.jpg')"></i></div>
+        <div class="c3d-card"><img src="g05.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g05.jpg')"></i></div>
+        <div class="c3d-card"><img src="g06.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g06.jpg')"></i></div>
       </div>
     </div>
+    <p class="c3d-hint">Arrastra para girar · toca una foto</p>
     <div class="mem-strip" aria-label="Nuestros recuerdos">
       <figure class="mem m1"><img src="m01.jpg" alt="Norma y Jorge de viaje" loading="lazy"></figure>
       <figure class="mem m2"><img src="m02.jpg" alt="Norma y Jorge en un parque" loading="lazy"></figure>
@@ -991,38 +1167,31 @@ body{font-weight:500}
 
         <span class="eyebrow">Confirmación de Asistencia</span>
         <h2 class="rsvp-title">Tu presencia <em>significa</em> todo</h2>
-        <p class="rsvp-text" id="rsvpGreeting">Confirma tu asistencia para reservar tu lugar en nuestra celebración. Tu compañía es el mejor regalo.</p>
-
-        <p id="rsvpNameDisplay" style="display:none;font-family:'Cormorant Garamond',serif;font-weight:600;font-style:italic;font-size:clamp(28px,6vw,38px);color:var(--accent);line-height:1.2;margin:14px auto 8px"></p>
-
-        <div class="rsvp-divider">
-          <div class="rsvp-divider-diamond"></div>
+        <p class="rsvp-hi" id="rsvp-hi" style="display:none"></p>
+        <p id="rsvp-pases-note" class="rsvp-note"></p>
+        <div class="rsvp-boxes">
+          <div class="rsvp-box" id="rsvp-pases-display"><span class="rsvp-box-label">Pases</span><span class="rsvp-box-num" id="rsvp-pases-num">1</span></div>
+          <div class="rsvp-box" id="rsvp-menores-display" style="display:none"><span class="rsvp-box-label">Menores</span><span class="rsvp-box-num" id="rsvp-menores-num">0</span></div>
         </div>
-
-        <div class="rsvp-pases-display" id="rsvpPasesDisplay" style="display:none">
-          <div class="rsvp-pases-label">Pases asignados</div>
-          <div class="rsvp-pases-num" id="rsvpPasesNum">1</div>
+        <p class="rsvp-dl">Por favor confirma antes del 15 de noviembre de 2026</p>
+        <div id="rsvp-bandeja">
+          <div class="rsvp-toggle2">
+            <button class="rsvp-tg" id="btnYes" type="button">Asistiré</button>
+            <button class="rsvp-tg" id="btnNo" type="button">No podré asistir</button>
+          </div>
+          <div class="rsvp-fields2" id="rsvp-fields" style="display:none"></div>
+          <button class="btn-rsvp" id="rsvp-confirm-btn" type="button"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg><span id="rsvp-btn-text">Confirmar asistencia</span></button>
         </div>
-
-        <div class="rsvp-toggle" id="rsvpToggle">
-          <button class="rsvp-toggle-btn" id="btnYes" type="button">¡Sí, asistiré!</button>
-          <button class="rsvp-toggle-btn" id="btnNo" type="button">No podré asistir</button>
+        <div class="rsvp-gracias" id="rsvp-gracias" style="display:none">
+          <svg class="rsvp-gracias-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8.5 12.5 11 15 16 9.5"/></svg>
+          <p class="rsvp-gracias-title" id="rsvp-gracias-title"></p>
+          <p class="rsvp-gracias-sub" id="rsvp-gracias-sub"></p>
+          <button class="rsvp-editar-btn" id="rsvp-editar-btn" type="button">Modificar mi respuesta</button>
         </div>
-
-        <div class="rsvp-fields" id="rsvpFields" style="display:none"></div>
-
-        <div class="rsvp-asignados" id="rsvpAsignados" style="display:none"></div>
-
-        <button type="button" class="btn-rsvp" id="btnRsvp">
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-          <span id="rsvpBtnText">Confirmar asistencia</span>
-        </button>
-
-        <div id="rsvpStatus" class="rsvp-status"></div>
-
+        <p id="rsvp-feedback"></p>
         <div class="rsvp-aviso">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
-          <p>Con mucho cariño te pedimos confirmar antes del <strong>15 de noviembre de 2026</strong>. Si no recibimos tu respuesta, entenderemos que no podrás acompañarnos y tu lugar quedará disponible para otro invitado.</p>
+          <p>Si no recibimos tu respuesta antes del <strong>15 de noviembre de 2026</strong>, entenderemos que no podrás acompañarnos y tu lugar quedará disponible para otro invitado.</p>
         </div>
       </div>
     </div>
@@ -1275,218 +1444,6 @@ function initMain(){
     ScrollTrigger.create({trigger:qrWrap,start:'top 80%',once:true,onEnter:function(){qrWrap.classList.add('scanning');}});
   }
 
-  /* ── RSVP — Panel de Invitados (jennifer-style) ── */
-  var params=new URLSearchParams(window.location.search);
-  var urlPara=params.get('para')||'';
-  var urlPases=parseInt(params.get('pases'),10)||0;
-  var greeting=document.getElementById('rsvpGreeting');
-  var nameDisplay=document.getElementById('rsvpNameDisplay');
-  var pasesDisplay=document.getElementById('rsvpPasesDisplay');
-  var pasesNum=document.getElementById('rsvpPasesNum');
-  var fieldsEl=document.getElementById('rsvpFields');
-  var btnYes=document.getElementById('btnYes');
-  var btnNo=document.getElementById('btnNo');
-  var confirmBtn=document.getElementById('btnRsvp');
-  var btnText=document.getElementById('rsvpBtnText');
-  var rsvpStatus=document.getElementById('rsvpStatus');
-  var rsvpChoice=null;
-  var toggleEl=document.getElementById('rsvpToggle');
-  var asigEl=document.getElementById('rsvpAsignados');
-  var nombresAsignados=[];
-  var asignadosChoices={};
-
-  if(urlPara&&nameDisplay){
-    nameDisplay.textContent=urlPara;
-    nameDisplay.style.display='';
-  }
-  if(urlPases>0&&pasesDisplay){
-    pasesDisplay.style.display='flex';
-    pasesNum.textContent=urlPases;
-  }
-
-  var PANEL_API='https://panel-invitados.vercel.app/api/confirmar';
-  var RSVP_URL='https://boda-norma-delfin-y-jorge-blanco.vercel.app';
-  var DEADLINE=new Date(2026,10,15,23,59,59,999); // 15 nov 2026
-  var CERRADAS=false;
-  var frozen=CERRADAS||Date.now()>DEADLINE.getTime();
-  if(frozen){
-    if(btnYes)btnYes.disabled=true;
-    if(btnNo)btnNo.disabled=true;
-    if(confirmBtn)confirmBtn.disabled=true;
-    if(btnText)btnText.textContent='Confirmaciones cerradas';
-    if(rsvpStatus){rsvpStatus.style.display='block';rsvpStatus.style.color='#7a219e';rsvpStatus.textContent=CERRADAS?'Las confirmaciones ya están cerradas. Si tienes alguna duda, comunícate directamente con los novios.':'El plazo para confirmar cerró el 15 de noviembre de 2026.';}
-  }
-
-  // Guard silencioso + prefill: botones bloqueados hasta que responda el panel
-  if(urlPara){
-    if(btnYes)btnYes.disabled=true;
-    if(btnNo)btnNo.disabled=true;
-    fetch(PANEL_API+'?nombre='+encodeURIComponent(urlPara)+'&url_boda='+encodeURIComponent(RSVP_URL))
-      .then(function(r){return r.json();})
-      .then(function(resp){
-        var d=resp.invitado;
-        var asignados=(d&&Array.isArray(d.nombres_asignados))?d.nombres_asignados.filter(function(x){return x&&x.trim();}):[];
-        if(asignados.length>0){
-          nombresAsignados=asignados;
-          if(toggleEl)toggleEl.style.display='none';
-          if(fieldsEl)fieldsEl.style.display='none';
-          if(pasesDisplay)pasesDisplay.style.display='none';
-          if(asigEl)asigEl.style.display='flex';
-          if(d.estado==='confirmado'||d.estado==='declino'){
-            var confLower=(d.nombres_confirmados||[]).map(function(s){return String(s).toLowerCase().trim();});
-            nombresAsignados.forEach(function(nm,idx){
-              asignadosChoices[idx]=(d.estado==='declino')?'no':(confLower.indexOf(nm.toLowerCase().trim())>=0?'yes':'no');
-            });
-            if(btnText&&!frozen)btnText.textContent='Actualizar respuesta';
-          }
-          renderAsignados();
-          return;
-        }
-        if(d&&typeof d.pases==='number'&&d.pases>0&&d.pases<=20){
-          urlPases=d.pases;
-          if(pasesNum)pasesNum.textContent=urlPases;
-          if(pasesDisplay)pasesDisplay.style.display='flex';
-        }
-        if(btnYes)btnYes.disabled=frozen;
-        if(btnNo)btnNo.disabled=frozen;
-        if(d&&(d.estado==='confirmado'||d.estado==='declino')){
-          selectChoice(d.estado==='confirmado'?'yes':'no');
-          if(d.estado==='confirmado'&&d.nombres_confirmados&&d.nombres_confirmados.length&&fieldsEl){
-            var inputs=fieldsEl.querySelectorAll('input');
-            d.nombres_confirmados.forEach(function(nm,i){if(inputs[i])inputs[i].value=nm;});
-          }
-          if(btnText&&!frozen)btnText.textContent='Actualizar respuesta';
-        }
-      })
-      .catch(function(){
-        if(btnYes)btnYes.disabled=frozen;
-        if(btnNo)btnNo.disabled=frozen;
-      });
-  }
-
-  function renderAsignados(){
-    if(!asigEl)return;asigEl.innerHTML='';
-    nombresAsignados.forEach(function(nm,idx){
-      var card=document.createElement('div');
-      card.className='rsvp-person-card';
-      var choice=asignadosChoices[idx];
-      if(choice)card.setAttribute('data-choice',choice);
-      var name=document.createElement('div');
-      name.className='rsvp-person-name';
-      name.textContent=nm;
-      var tog=document.createElement('div');
-      tog.className='rsvp-person-toggle';
-      var bY=document.createElement('button');
-      bY.type='button';
-      bY.className='rsvp-mini-btn'+(choice==='yes'?' rsvp-mini-yes-on':'');
-      bY.textContent='Asistiré';
-      bY.disabled=frozen;
-      bY.addEventListener('click',function(){if(frozen)return;asignadosChoices[idx]='yes';renderAsignados();});
-      var bN=document.createElement('button');
-      bN.type='button';
-      bN.className='rsvp-mini-btn'+(choice==='no'?' rsvp-mini-no-on':'');
-      bN.textContent='No asistiré';
-      bN.disabled=frozen;
-      bN.addEventListener('click',function(){if(frozen)return;asignadosChoices[idx]='no';renderAsignados();});
-      tog.appendChild(bY);tog.appendChild(bN);
-      card.appendChild(name);card.appendChild(tog);
-      asigEl.appendChild(card);
-    });
-  }
-
-  function buildFields(n){
-    if(!fieldsEl)return;
-    fieldsEl.innerHTML='';
-    for(var i=0;i<n;i++){
-      var div=document.createElement('div');
-      div.className='rsvp-field';
-      var inp=document.createElement('input');
-      inp.type='text';inp.name='nombre_'+(i+1);
-      inp.placeholder='Nombre del invitado '+(i+1);
-      inp.autocomplete='name';
-      inp.disabled=frozen;
-      div.appendChild(inp);
-      fieldsEl.appendChild(div);
-    }
-    fieldsEl.style.display='flex';
-  }
-
-  function selectChoice(choice){
-    rsvpChoice=choice;
-    if(btnYes){
-      btnYes.classList.toggle('selected-yes',choice==='yes');
-      btnYes.classList.remove('selected-no');
-    }
-    if(btnNo){
-      btnNo.classList.toggle('selected-no',choice==='no');
-      btnNo.classList.remove('selected-yes');
-    }
-    if(choice==='yes'){
-      buildFields(urlPases||1);
-    }else{
-      if(fieldsEl){fieldsEl.style.display='none';fieldsEl.innerHTML='';}
-    }
-  }
-
-  if(btnYes)btnYes.addEventListener('click',function(){selectChoice('yes');});
-  if(btnNo)btnNo.addEventListener('click',function(){selectChoice('no');});
-
-  if(confirmBtn){
-    confirmBtn.addEventListener('click',function(){
-      if(frozen)return;
-      var modoAsignados=nombresAsignados.length>0;
-      var nombres=[];
-      var estadoFinal;
-      if(modoAsignados){
-        var faltan=nombresAsignados.filter(function(_,i){return !asignadosChoices[i];});
-        if(faltan.length>0){
-          rsvpStatus.className='rsvp-status error';
-          rsvpStatus.textContent='Por favor responde por cada invitado ('+faltan.length+' pendiente'+(faltan.length===1?'':'s')+').';
-          return;
-        }
-        nombres=nombresAsignados.filter(function(_,i){return asignadosChoices[i]==='yes';});
-        estadoFinal=nombres.length>0?'confirmado':'declino';
-      }else{
-        if(!rsvpChoice){
-          rsvpStatus.className='rsvp-status error';
-          rsvpStatus.textContent='Por favor selecciona si asistirás o no.';
-          return;
-        }
-        if(rsvpChoice==='yes'&&fieldsEl){
-          fieldsEl.querySelectorAll('input').forEach(function(inp){
-            if(inp.value.trim())nombres.push(inp.value.trim());
-          });
-        }
-        estadoFinal=rsvpChoice==='yes'?'confirmado':'declino';
-      }
-      confirmBtn.disabled=true;
-      btnText.textContent='Enviando...';
-      fetch(PANEL_API,{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          nombre:urlPara||(nombres[0]||'Invitado'),
-          url_boda:RSVP_URL,
-          estado:estadoFinal,
-          pases_confirmados:estadoFinal==='confirmado'?nombres.length:0,
-          nombres_confirmados:estadoFinal==='confirmado'?nombres:[]
-        })
-      }).then(function(res){
-        if(res.ok)return res.json();throw new Error('err');
-      }).then(function(){
-        confirmBtn.disabled=false;
-        rsvpStatus.className='rsvp-status success';
-        if(estadoFinal==='confirmado'&&window.elyConfetti)window.elyConfetti(confirmBtn);
-        rsvpStatus.textContent=estadoFinal==='confirmado'?'¡Asistencia confirmada! Nos vemos pronto.':'Lamentamos que no puedas acompañarnos. ¡Te llevaremos en el corazón!';
-        btnText.textContent='Actualizar respuesta';
-      }).catch(function(){
-        confirmBtn.disabled=false;
-        btnText.textContent='Confirmar';
-        rsvpStatus.className='rsvp-status error';
-        rsvpStatus.textContent='Error de conexión. Intenta de nuevo.';
-      });
-    });
-  }
 }
 
 /* ── ITINERARIO GLOW ── */
@@ -1812,9 +1769,6 @@ document.addEventListener('ely:open',function(){
   if(secs&&!RM)setInterval(function(){secs.classList.remove('tick');void secs.offsetWidth;secs.classList.add('tick');},1000);
 
   if(RM||!window.gsap||!window.ScrollTrigger)return;
-  // portada: parallax + nombres suben y se desvanecen
-  gsap.fromTo('#hero .hero-bg',{yPercent:0,scale:1},{yPercent:18,scale:1.08,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
-  gsap.fromTo('#hero .hero-content',{y:0,opacity:1},{y:-90,opacity:0,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom 15%',scrub:true}});
   // itinerario: la línea se dibuja con el scroll
   var tr=document.querySelector('.itv3-track');
   if(tr){gsap.set(tr,{xPercent:-50,x:0});gsap.fromTo(tr,{scaleY:0},{scaleY:1,ease:'none',scrollTrigger:{trigger:'.itv3',start:'top 80%',end:'bottom 45%',scrub:1}});}
@@ -1824,6 +1778,223 @@ document.addEventListener('ely:open',function(){
   });
   ScrollTrigger.refresh();
 });
+
+</script>
+<script>
+/* ═════════ PAQUETE DE EFECTOS v2 ═════════ */
+var PK_RM=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* 2. Fundidos uniformes entre secciones */
+function initSectionFades(){
+  var secs=[].slice.call(document.querySelectorAll('.wrap > section, .wrap > footer'));
+  var pageBg=getComputedStyle(document.body).backgroundColor;
+  function rgb(c){var m=String(c).match(/[\d.]+/g);if(!m)return null;if(m.length>3&&+m[3]===0)return null;return [+m[0],+m[1],+m[2]];}
+  function hex(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+  function edge(s,which){var d=s.getAttribute(which==='top'?'data-top':'data-bot');if(d)return hex(d);
+    return rgb(getComputedStyle(s).backgroundColor)||rgb(pageBg)||[252,248,242];}
+  function grad(dir,c,h){var st=[];for(var i=0;i<=8;i++){var t=i/8,a=1-t*t*(3-2*t);
+      st.push('rgba('+c[0]+','+c[1]+','+c[2]+','+a.toFixed(3)+') '+(t*h).toFixed(1)+'px');}
+    return 'linear-gradient('+dir+','+st.join(',')+')';}
+  for(var i=0;i<secs.length-1;i++){
+    var A=secs[i],B=secs[i+1];
+    A.classList.add('fz');B.classList.add('fz');
+    if(A.id==='hero'){var cb=edge(B,'top');A.style.setProperty('--fb',grad('to top',cb,90));continue;}
+    var a=edge(A,'bot'),b=edge(B,'top'),m=[Math.round((a[0]+b[0])/2),Math.round((a[1]+b[1])/2),Math.round((a[2]+b[2])/2)];
+    A.style.setProperty('--fb',grad('to top',m,170));
+    B.style.setProperty('--ft',grad('to bottom',m,170));
+  }
+}
+
+/* 3. Tintas */
+function initInks(){
+  var map=[['invitacion','oval',0],['familias','top',1],['ubicacion','corner',0],['siti','hero',1],['vestimenta','footer',0],
+           ['regalos','oval',1],['salbum','top',0],['rsvp','corner',1]];
+  map.forEach(function(m){var s=document.getElementById(m[0]);if(!s)return;
+    var d=document.createElement('div');d.className='ink-bg'+(m[2]?' flip':'')+(m[1]==='oval'?' oval':'');d.setAttribute('aria-hidden','true');
+    d.innerHTML='<i style="background-image:url(\'ink/ink-'+m[1]+'.webp\')"></i>';
+    s.insertBefore(d,s.firstChild);s.classList.add('has-ink');});
+}
+
+/* 1. Hero al hacer scroll */
+function initHeroScroll(){
+  if(PK_RM||!window.gsap||!window.ScrollTrigger)return;
+  gsap.fromTo('#hero .hero-content',{y:0,opacity:1,filter:'blur(0px)'},{y:-110,opacity:0,filter:'blur(10px)',ease:'none',
+    scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom 20%',scrub:true}});
+  gsap.fromTo('#hero .hero-bg',{y:0,filter:'blur(0px) brightness(1)'},{y:-70,filter:'blur(5px) brightness(.92)',ease:'none',
+    scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+}
+
+/* 6. Lluvia de sobres */
+function initEnvRain(){
+  var sec=document.getElementById('regalos'),rain=document.getElementById('envRain'),
+      btn=document.getElementById('envGift'),body=document.getElementById('envGiftBody'),hint=document.getElementById('envGiftHint');
+  if(!sec||!btn)return;
+  var landed=false,visible=false,alive=0,MAX=22,timer=null;
+  var DEPTH=[{w:[14,20],o:.45,d:[10,13]},{w:[22,28],o:.7,d:[7.5,9.5]},{w:[30,38],o:.92,d:[5.5,7]}];
+  function rnd(a){return a[0]+Math.random()*(a[1]-a[0]);}
+  function spawn(){
+    if(!visible||alive>=MAX||!window.gsap)return;alive++;
+    var L=DEPTH[Math.floor(Math.random()*3)],w=rnd(L.w);
+    var el=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    el.setAttribute('viewBox','0 0 34 24');el.setAttribute('class','env-rain-item');
+    el.style.width=w+'px';el.style.height=(w*24/34)+'px';el.style.left=(Math.random()*96)+'%';
+    el.innerHTML='<rect x="1" y="1" width="32" height="22" rx="2.5" fill="#FBF1DF" stroke="#C9A646" stroke-width="1.3"/>'+
+      '<path d="M1 1 L17 13 L33 1" fill="#F7E7CE" stroke="#C9A646" stroke-width="1.2" stroke-linejoin="round"/>'+
+      '<circle cx="17" cy="12.5" r="3.2" fill="#7a219e"/>';
+    rain.appendChild(el);
+    var H=sec.offsetHeight+60,dur=rnd(L.d);
+    gsap.timeline({onComplete:function(){el.remove();alive--;}})
+      .fromTo(el,{y:-50,x:0,rotation:(Math.random()-.5)*50},{y:H,x:(Math.random()-.5)*80,rotation:(Math.random()-.5)*200,duration:dur,ease:'none'},0)
+      .fromTo(el,{opacity:0},{opacity:L.o,duration:dur*.15},0)
+      .to(el,{opacity:0,duration:dur*.2},dur*.8);
+  }
+  function loop(){clearTimeout(timer);if(!visible)return;spawn();timer=setTimeout(loop,420);}
+  if(!PK_RM&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible)loop();},{threshold:0}).observe(sec);
+  }
+  function land(cb){
+    if(landed){if(cb)cb();return;}landed=true;
+    if(!window.gsap||PK_RM){body.classList.add('landed');if(cb)cb();return;}
+    gsap.fromTo(btn,{y:-150,rotation:-12,scale:.82,opacity:0},{y:0,rotation:0,scale:1,opacity:1,duration:1.1,ease:'back.out(1.5)',
+      clearProps:'transform',onComplete:function(){body.classList.add('landed');if(cb)cb();}});
+  }
+  if(window.ScrollTrigger&&!PK_RM)ScrollTrigger.create({trigger:sec,start:'center 60%',once:true,onEnter:function(){land();}});
+  else land();
+  function toggle(e){if(e)e.preventDefault();
+    land(function(){var open=btn.classList.toggle('open');btn.setAttribute('aria-expanded',open?'true':'false');
+      hint.textContent=open?'Toca para cerrar':'Toca para abrir';body.classList.toggle('landed',!open);
+      if(window.ScrollTrigger)setTimeout(function(){ScrollTrigger.refresh();},700);});}
+  btn.addEventListener('click',toggle);hint.addEventListener('click',toggle);
+}
+
+/* 8. Carrusel 3D con espejo */
+function initCarousel3D(){
+  var scene=document.getElementById('c3dScene'),ring=document.getElementById('c3dRing');if(!ring)return;
+  var cards=[].slice.call(ring.querySelectorAll('.c3d-card')),n=cards.length,R=window.innerWidth<480?190:250;
+  cards.forEach(function(c,i){c.style.transform='rotateY('+(360/n*i)+'deg) translateZ('+R+'px)';});
+  var rot=0,vel=0,drag=false,x0=0,lastX=0,moved=0,auto=0.14,idle=true,onScreen=true,resumeT=null;
+  function apply(){ring.style.transform='translateZ(-'+R+'px) rotateY('+rot+'deg)';}apply();
+  function tick(){if(!onScreen||drag)return;if(Math.abs(vel)>0.02){rot+=vel;vel*=0.95;}else if(idle&&!PK_RM){rot+=auto;}apply();}
+  if(window.gsap)gsap.ticker.add(tick);
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){onScreen=es[0].isIntersecting;}).observe(scene);
+  function down(x){drag=true;idle=false;x0=lastX=x;moved=0;vel=0;clearTimeout(resumeT);}
+  function move(x){if(!drag)return;var dx=x-lastX;rot+=dx*.4;vel=dx*.4;moved+=Math.abs(dx);lastX=x;apply();}
+  function up(){if(!drag)return;drag=false;resumeT=setTimeout(function(){idle=true;},2600);}
+  ring.addEventListener('mousedown',function(e){e.preventDefault();down(e.clientX);});
+  window.addEventListener('mousemove',function(e){move(e.clientX);});window.addEventListener('mouseup',up);
+  ring.addEventListener('touchstart',function(e){down(e.touches[0].clientX);},{passive:true});
+  ring.addEventListener('touchmove',function(e){move(e.touches[0].clientX);},{passive:true});
+  ring.addEventListener('touchend',up);
+  var lb=document.getElementById('lightbox'),lbImg=document.getElementById('lightbox-img'),lbClose=document.getElementById('lightbox-close');
+  cards.forEach(function(c){c.addEventListener('click',function(){if(moved>8)return;var im=c.querySelector('img');
+    lbImg.src=im.src;lbImg.alt=im.alt;lb.style.display='flex';lb.style.opacity=1;lbImg.style.opacity=1;lbImg.style.transform='none';lb.removeAttribute('aria-hidden');});});
+  function closeLb(){lb.style.display='none';lb.setAttribute('aria-hidden','true');lbImg.src='';}
+  if(lbClose)lbClose.addEventListener('click',closeLb);
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.style.display==='flex')closeLb();});
+}
+
+/* 7. Hospedaje: Lista / Mapa */
+function initHospMap(){
+  var sw=document.querySelector('.hv-switch'),bL=document.getElementById('hvLista'),bM=document.getElementById('hvMapa'),
+      pL=document.getElementById('hvPanelLista'),pM=document.getElementById('hvPanelMapa');
+  if(!sw)return;var map=null;
+  function view(m){sw.classList.toggle('mapa',m);bL.classList.toggle('on',!m);bM.classList.toggle('on',m);
+    bL.setAttribute('aria-selected',!m);bM.setAttribute('aria-selected',m);pL.hidden=m;pM.hidden=!m;if(m)build();
+    if(window.ScrollTrigger)setTimeout(function(){ScrollTrigger.refresh();},400);}
+  bL.addEventListener('click',function(){view(false);});bM.addEventListener('click',function(){view(true);});
+  var SITES=[
+    {n:'1',type:'Ceremonia religiosa · 12:00 p.m.',name:'Templo de San Diego',addr:'7474 Charmant Dr, San Diego, CA 92122',ll:[32.8663961,-117.2287003],url:'https://maps.app.goo.gl/TuEXxKDjXiUX8dHm7?g_st=ic',lbl:'✝ Ceremonia'},
+    {n:'2',type:'Recepción · 6:00 p.m.',name:'Factory of Dreams Hall',addr:'261 3rd Ave, Chula Vista, CA 91910',ll:[32.6425372,-117.0802928],url:'https://maps.app.goo.gl/chEjQyJiWMtpEEGF7?g_st=ic',lbl:'♥ Recepción'}];
+  var route={mi:null,min:null};
+  function loadLeaflet(cb){if(window.L)return cb();
+    var l=document.createElement('link');l.rel='stylesheet';l.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';document.head.appendChild(l);
+    var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';s.onload=cb;document.head.appendChild(s);}
+  function card(s){
+    document.getElementById('pmapNum').textContent=s.n;document.getElementById('pmapType').textContent=s.type;
+    document.getElementById('pmapName').textContent=s.name;document.getElementById('pmapAddr').textContent=s.addr;
+    document.getElementById('pmapDist').textContent=route.mi?(s.n==='2'?'Destino de la celebración':route.mi+' mi · '+route.min+' min a la recepción'):'';
+    document.getElementById('pmapGo').href=s.url;document.getElementById('pmapCard').classList.add('on');document.getElementById('pmapTip').style.opacity=0;
+    map.flyTo(s.ll,14,{duration:1.1});}
+  document.getElementById('pmapX').addEventListener('click',function(){document.getElementById('pmapCard').classList.remove('on');document.getElementById('pmapTip').style.opacity=1;});
+  function fitAll(){map.fitBounds(L.latLngBounds(SITES.map(function(s){return s.ll;})),{paddingTopLeft:[40,90],paddingBottomRight:[70,80]});}
+  function build(){
+    if(map){setTimeout(function(){map.invalidateSize();fitAll();},60);return;}
+    loadLeaflet(function(){
+      map=L.map('pmap',{zoomControl:false,attributionControl:true,dragging:!L.Browser.mobile,tap:false,scrollWheelZoom:false});
+      var base='https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+      L.tileLayer(base+'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,attribution:'Esri'}).addTo(map);
+      L.tileLayer(base+'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16}).addTo(map);
+      if(L.Browser.mobile){var el=document.getElementById('pmap');
+        el.addEventListener('touchstart',function(e){if(e.touches.length>1)map.dragging.enable();else map.dragging.disable();},{passive:true});
+        el.addEventListener('touchend',function(){map.dragging.disable();},{passive:true});}
+      SITES.forEach(function(s){
+        var html=s.n==='2'?'<div class="pmk-pill">'+s.lbl+'</div>':'<div class="pmk-num">'+s.n+'</div>';
+        var ic=L.divIcon({html:html,className:'',iconSize:s.n==='2'?[120,36]:[38,38],iconAnchor:s.n==='2'?[60,44]:[19,19]});
+        L.marker(s.ll,{icon:ic,keyboard:true,title:s.name}).addTo(map).on('click',function(){card(s);});
+      });
+      fetch('https://router.project-osrm.org/route/v1/driving/'+SITES[0].ll[1]+','+SITES[0].ll[0]+';'+SITES[1].ll[1]+','+SITES[1].ll[0]+'?overview=full&geometries=geojson')
+        .then(function(r){return r.json();}).then(function(d){var r=d.routes&&d.routes[0];if(!r)return;
+          route.mi=(r.distance/1609.34).toFixed(1);route.min=Math.round(r.duration/60);
+          L.geoJSON(r.geometry,{style:{color:'#D4AF37',weight:3.5,opacity:.95,className:'pmap-route'}}).addTo(map);}).catch(function(){});
+      document.getElementById('pmapIn').onclick=function(){map.zoomIn();};
+      document.getElementById('pmapOut').onclick=function(){map.zoomOut();};
+      document.getElementById('pmapAll').onclick=fitAll;
+      setTimeout(function(){map.invalidateSize();fitAll();},60);
+    });
+  }
+}
+
+/* 9. RSVP · Panel de Invitados (X pases) */
+function initRsvpPK(){
+  var API='https://panel-invitados.vercel.app/api/confirmar',URL_BODA='https://boda-norma-delfin-y-jorge-blanco.vercel.app';
+  var DEADLINE=new Date('2026-11-15T23:59:59-08:00');
+  var qs=new URLSearchParams(location.search),para=(qs.get('para')||'').trim();
+  var pases=Math.max(1,Math.min(20,parseInt(qs.get('pases'),10)||1)),menores=Math.max(0,parseInt(qs.get('menores'),10)||0);
+  var frozen=new Date()>DEADLINE,estado=null,saved=[];
+  function $(i){return document.getElementById(i);}
+  var hi=$('rsvp-hi'),note=$('rsvp-pases-note'),num=$('rsvp-pases-num'),fields=$('rsvp-fields'),btn=$('rsvp-confirm-btn'),btnText=$('rsvp-btn-text'),
+      yes=$('btnYes'),no=$('btnNo'),fb=$('rsvp-feedback'),band=$('rsvp-bandeja'),gr=$('rsvp-gracias'),gT=$('rsvp-gracias-title'),gS=$('rsvp-gracias-sub'),ed=$('rsvp-editar-btn');
+  if(!btn)return;
+  if(para){hi.textContent=para;hi.style.display='';}
+  function setP(){num.textContent=pases;note.textContent=pases===1?'Hemos reservado un lugar para ti.':'Hemos reservado '+pases+' lugares en tu honor.';}setP();
+  if(menores>0){$('rsvp-menores-num').textContent=menores;$('rsvp-menores-display').style.display='';}
+  function setFb(t,c){fb.textContent=t;fb.className=c||'';}
+  function build(){fields.innerHTML='';for(var i=0;i<pases;i++){var inp=document.createElement('input');inp.type='text';inp.className='rsvp-input';
+    inp.placeholder='Nombre completo del invitado '+(i+1);inp.autocomplete='name';if(saved[i])inp.value=saved[i];fields.appendChild(inp);}}
+  function sel(v){estado=v;yes.classList.toggle('on',v==='confirmado');no.classList.toggle('on',v==='declino');
+    if(v==='confirmado'){build();fields.style.display='';}else{fields.innerHTML='';fields.style.display='none';}}
+  yes.addEventListener('click',function(){if(!frozen)sel('confirmado');});no.addEventListener('click',function(){if(!frozen)sel('declino');});
+  function gracias(est,nom){if(est==='confirmado'){gT.textContent='¡Gracias por confirmar!';
+      gS.textContent=nom.length===1?'Te esperamos, '+nom[0]+'.':'Confirmamos '+nom.length+' lugares: '+nom.join(', ')+'.';}
+    else{gT.textContent='Gracias por avisarnos';gS.textContent='Lamentamos que no puedas acompañarnos. Te vamos a extrañar.';}
+    band.style.display='none';gr.style.display='';}
+  ed.addEventListener('click',function(){if(frozen)return;gr.style.display='none';band.style.display='';setFb('','');});
+  if(frozen){yes.disabled=no.disabled=btn.disabled=ed.disabled=true;btnText.textContent='Confirmaciones cerradas';setFb('La fecha límite para confirmar ya pasó.','err');}
+  if(para){fetch(API+'?nombre='+encodeURIComponent(para)+'&url_boda='+encodeURIComponent(URL_BODA)).then(function(r){return r.json();}).then(function(d){
+      var inv=d&&d.invitado;if(!inv)return;if(inv.pases){pases=Math.max(1,parseInt(inv.pases,10)||pases);setP();}
+      if(inv.estado==='confirmado'||inv.estado==='declino'){saved=inv.nombres_confirmados||[];sel(inv.estado);btnText.textContent='Actualizar respuesta';gracias(inv.estado,saved);}
+    }).catch(function(){});}
+  btn.addEventListener('click',function(){
+    if(frozen)return;
+    if(!para){setFb('Abre tu enlace personal de invitación para confirmar.','err');return;}
+    if(!estado){setFb('Elige si asistirás o no.','err');return;}
+    var nom=[];if(estado==='confirmado'){fields.querySelectorAll('input').forEach(function(i){var v=i.value.trim();if(v)nom.push(v);});
+      if(!nom.length){setFb('Escribe al menos un nombre.','err');return;}}
+    btn.disabled=true;setFb('Enviando…','');
+    fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre:para,url_boda:URL_BODA,estado:estado,
+      pases_confirmados:estado==='confirmado'?nom.length:0,nombres_confirmados:nom})})
+      .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});})
+      .then(function(res){btn.disabled=false;
+        if(!res.ok||(res.d&&res.d.ok===false)){setFb('No pudimos registrar tu respuesta. Intenta de nuevo.','err');return;}
+        saved=nom;btnText.textContent='Actualizar respuesta';setFb('','');gracias(estado,nom);
+        if(estado==='confirmado'&&window.elyConfetti)window.elyConfetti(gr);})
+      .catch(function(){btn.disabled=false;setFb('Sin conexión. Intenta de nuevo.','err');});
+  });
+}
+
+document.addEventListener('DOMContentLoaded',function(){initInks();initSectionFades();initRsvpPK();initHospMap();});
+document.addEventListener('ely:open',function(){initHeroScroll();initEnvRain();initCarousel3D();setTimeout(initSectionFades,200);});
 
 </script>
 </body>
