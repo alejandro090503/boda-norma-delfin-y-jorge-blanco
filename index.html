@@ -847,6 +847,18 @@ body,button,input{font-variant-numeric:lining-nums}
 .dc-orb-names span:nth-child(4){animation-delay:9s}
 @keyframes orbName{0%{opacity:0;transform:translateY(6px)}4%,20%{opacity:1;transform:none}25%,100%{opacity:0;transform:translateY(-6px)}}
 @media(prefers-reduced-motion:reduce){.dc-orb,.dc-orb::before{animation:none}.dc-orb-names{height:auto;width:auto}.dc-orb-names span{position:static;opacity:1;animation:none;display:inline;margin:0 6px;font-size:16px}}
+
+/* Cambios de la clienta */
+.invite-verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;font-weight:500;line-height:1.85;color:var(--text);max-width:340px;margin:22px auto 0;padding:26px 6px 20px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.invite-verse p{margin:0 auto;max-width:320px}
+.invite-verse p+p{margin-top:14px}
+.invite-verse-rut{font-family:'Great Vibes',cursive;font-style:normal;font-size:clamp(25px,6.6vw,30px);color:var(--accent);line-height:1.45;margin-bottom:18px!important;padding:0 .2em 14px;border-bottom:1px solid var(--border)}
+.invite-motiv{margin-top:26px!important;line-height:1.7}
+#inv-photo{aspect-ratio:3/4;object-position:50% 18%}
+.loc-photo{margin:-8px -8px 18px;border-radius:4px;overflow:hidden;position:relative}
+.loc-photo img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
+.loc-photo figcaption{position:absolute;right:6px;bottom:4px;font-family:'Cormorant Garamond',serif;font-size:11px;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.gift-buzon{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:12px 20px;border:1px solid rgba(212,175,55,.6);border-radius:50px;background:rgba(122,33,158,.07);font-family:'Cormorant Garamond',serif;font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);line-height:1.4}
 /* 10. Script/foil sin cortes */
 .heading .w,.heading-sm .w{padding:.22em .45em;margin:-.22em -.45em;line-height:1.25}
 .foil-txt,.env-title{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -903,6 +915,13 @@ body,button,input{font-variant-numeric:lining-nums}
   <section id="invitacion" class="sec rv" style="text-align:center">
     <span class="eyebrow">Con la gracia de Dios</span>
     <div class="orn"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
+    <div class="invite-verse">
+      <p class="invite-verse-rut">A dónde tú vayas, iré yo.<br>Dónde tú vivas, viviré yo.<br>Tu pueblo será mi pueblo<br>y tu Dios será mi Dios.</p>
+      <p>Porque el amor no solamente es sentir, es elegir.</p>
+      <p>El amor no promete perfección, promete permanencia, promete quedarse cuando todos se van.</p>
+      <p class="invite-verse-end">Promete elegir el mismo corazón una vez más, porque cuando Dios une dos corazones con verdad, ni el tiempo, ni la distancia los podrá separar.</p>
+    </div>
+    <span class="eyebrow invite-motiv">Motivados por el amor que nos tenemos<br>y con la bendición de nuestros padres</span>
     <h1 class="heading heading-names">Norma<br><span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;color:var(--gold);display:block;margin:4px 0">y</span>Jorge</h1>
     <p class="sub" id="invHonorTxt" style="margin-top:8px;font-weight:600;color:var(--brown)">Tenemos el honor de invitarte a<br>nuestra boda religiosa</p>
     <div class="orn bot"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
@@ -910,12 +929,8 @@ body,button,input{font-variant-numeric:lining-nums}
       <span class="dato">Sábado 5 de diciembre de 2026</span><br>
       <strong style="font-weight:600;color:var(--dark)">San Diego, California</strong>
     </p>
-    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--wine);line-height:1.7;margin-top:18px;font-weight:500;max-width:320px;margin-left:auto;margin-right:auto">
-      Dios cruzó nuestros caminos y nos enseñó a caminar juntos.<br><br>
-      Hoy queremos prometernos frente a Él lo que ya sabe nuestro corazón, y nos encantaría que fueras testigo de ese momento.
-    </p>
     <div id="inv-photo-wrap">
-      <img id="inv-photo" src="inv.jpg" alt="Norma y Jorge">
+      <img id="inv-photo" src="inv.jpg?v=2" alt="Norma y Jorge">
       <div class="inv-frame" aria-hidden="true">
         <div class="inv-frame-border"></div>
         <span class="inv-fc inv-fc--tl"></span>
@@ -985,6 +1000,7 @@ body,button,input{font-variant-numeric:lining-nums}
 
     <div class="card rv loc-card" style="max-width:380px;margin:24px auto 0">
       <span class="loc-venue-lbl">Ceremonia Religiosa</span>
+      <figure class="loc-photo"><img src="templo.jpg" alt="Templo de San Diego, California" loading="eager"><figcaption>Foto: Antoine Taveneaux · CC BY-SA 3.0</figcaption></figure>
       <div class="loc-venue">Templo de San Diego</div>
       <div class="loc-row"><svg class="loc-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="loc-txt"><strong>12:00 p.m.</strong></span></div>
       <p class="loc-sub">7474 Charmant Dr, San Diego, CA 92122</p>
@@ -1066,10 +1082,10 @@ body,button,input{font-variant-numeric:lining-nums}
   <section id="regalos" class="sec rv" style="text-align:center">
     <div class="env-rain" id="envRain" aria-hidden="true"></div>
     <div class="env-stage">
-      <span class="eyebrow">Mesa de Regalos</span>
-      <h2 class="heading-sm">Lluvia de Sobres</h2>
+      <span class="eyebrow">Un Gesto de Amor</span>
+      <h2 class="heading-sm">Obsequio</h2>
       <div class="orn" style="margin-top:14px;margin-bottom:0"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
-      <p class="gift-msg">Tu presencia es nuestro regalo más preciado. Si deseas honrarnos con un obsequio, con infinita gratitud lo recibimos.</p>
+      
       <button class="env-interactive" id="envGift" type="button" aria-label="Sobre — toca para abrir" aria-expanded="false">
         <div class="env-body" id="envGiftBody">
           <svg class="env-svg" viewBox="0 0 260 200" preserveAspectRatio="none" aria-hidden="true">
@@ -1095,8 +1111,9 @@ body,button,input{font-variant-numeric:lining-nums}
         </div>
         <div class="env-open-content" aria-live="polite">
           <svg class="env-mailbox-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="22" width="36" height="24" rx="5"/><path d="M8 30 Q26 38 44 30"/><rect x="18" y="8" width="16" height="16" rx="2"/><path d="M18 8 Q26 3 34 8"/></svg>
-          <p class="env-title">Tu presencia es nuestro regalo</p>
-          <p class="env-desc">El día de la boda habrá un buzón en la recepción para que deposites tu sobre con tu muestra de cariño.</p>
+          <p class="env-title">Tu presencia es el regalo más importante</p>
+          <p class="env-desc">Si deseas hacernos un obsequio, agradecemos los sobres con efectivo el día de la celebración.</p>
+          <p class="gift-buzon"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M20 6h-8l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"/></svg>Habrá un buzón especial en la recepción</p>
         </div>
       </button>
       <button class="env-tap-hint" id="envGiftHint" type="button">Toca para abrir</button>
@@ -1151,9 +1168,6 @@ body,button,input{font-variant-numeric:lining-nums}
       <div class="c3d-floor" aria-hidden="true"></div>
       <div class="c3d-mirror" aria-hidden="true"><div class="c3d-ring c3d-ring-m" id="c3dRingM"></div></div>
       <div class="c3d-ring" id="c3dRing">
-        <div class="c3d-card"><img src="g01.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g01.jpg')"></i></div>
-        <div class="c3d-card"><img src="g02.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g02.jpg')"></i></div>
-        <div class="c3d-card"><img src="g03.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g03.jpg')"></i></div>
         <div class="c3d-card"><img src="g04.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g04.jpg')"></i></div>
         <div class="c3d-card"><img src="g05.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g05.jpg')"></i></div>
         <div class="c3d-card"><img src="g06.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g06.jpg')"></i></div>
