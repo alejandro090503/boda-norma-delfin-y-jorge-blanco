@@ -833,6 +833,20 @@ body,button,input{font-variant-numeric:lining-nums}
 .c3d-floor::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(255,245,220,.45) 50%,transparent 65%);background-size:260% 100%;animation:floorSheen 7s ease-in-out infinite}
 @keyframes floorSheen{0%{background-position:130% 0}100%{background-position:-40% 0}}
 @media(prefers-reduced-motion:reduce){.c3d-floor::after{animation:none}}
+
+/* Colores a evitar: una sola bola que cambia de color */
+.dc-orb-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;margin:18px auto 0}
+.dc-orb{position:relative;width:74px;height:74px;border-radius:50%;background:#FFFFED;border:1.5px solid rgba(42,11,51,.22);overflow:hidden;animation:orbColor 12s ease-in-out infinite,swGlow 3s ease-in-out infinite}
+.dc-orb::before{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.75),transparent 46%),linear-gradient(120deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);background-size:100% 100%,300% 100%;animation:swSheen 4s ease-in-out infinite}
+.dc-orb::after{content:'';position:absolute;inset:-7px;border-radius:50%;border:1px dashed rgba(42,11,51,.3)}
+@keyframes orbColor{0%,18%{background-color:#FFFFED}25%,43%{background-color:#FFFFFF}50%,68%{background-color:#B80009}75%,93%{background-color:#730076}100%{background-color:#FFFFED}}
+.dc-orb-names{position:relative;display:block;width:160px;height:26px}
+.dc-orb-names span{position:absolute;inset:0;text-align:center;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;letter-spacing:.14em;text-transform:uppercase;color:var(--text);opacity:0;animation:orbName 12s ease-in-out infinite}
+.dc-orb-names span:nth-child(2){animation-delay:3s}
+.dc-orb-names span:nth-child(3){animation-delay:6s}
+.dc-orb-names span:nth-child(4){animation-delay:9s}
+@keyframes orbName{0%{opacity:0;transform:translateY(6px)}4%,20%{opacity:1;transform:none}25%,100%{opacity:0;transform:translateY(-6px)}}
+@media(prefers-reduced-motion:reduce){.dc-orb,.dc-orb::before{animation:none}.dc-orb-names{height:auto;width:auto}.dc-orb-names span{position:static;opacity:1;animation:none;display:inline;margin:0 6px;font-size:16px}}
 /* 10. Script/foil sin cortes */
 .heading .w,.heading-sm .w{padding:.22em .45em;margin:-.22em -.45em;line-height:1.25}
 .foil-txt,.env-title{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -851,8 +865,8 @@ body,button,input{font-variant-numeric:lining-nums}
 <div id="petals"></div>
 
 <div id="envelope-screen">
-  <img id="envImage" src="sobre.jpg" alt="Invitación Norma y Jorge" style="opacity:0">
-  <video id="envVideo" src="apertura.mp4?v=3" muted playsinline preload="auto"></video>
+  <img id="envImage" src="sobre.jpg?v=3" alt="Invitación Norma y Jorge" style="opacity:0">
+  <video id="envVideo" src="apertura.mp4?v=3" poster="sobre.jpg?v=3" muted playsinline preload="auto"></video>
   <div class="env-tap" id="envTap">Toca para abrir</div>
 </div>
 
@@ -1039,11 +1053,9 @@ body,button,input{font-variant-numeric:lining-nums}
 
     <div class="dc-avoid-block">
       <p class="dc-avoid">Por favor evita estos colores</p>
-      <div class="dc-swatches">
-        <span class="dc-sw"><span class="dc-swatch-dot" style="background:#FFFFED;border:1.5px solid rgba(42,11,51,.3)"></span><span>Marfil</span></span>
-        <span class="dc-sw"><span class="dc-swatch-dot" style="background:#FFFFFF;border:1.5px solid rgba(42,11,51,.3)"></span><span>Blanco</span></span>
-        <span class="dc-sw"><span class="dc-swatch-dot" style="background:#B80009"></span><span>Rojo</span></span>
-        <span class="dc-sw"><span class="dc-swatch-dot" style="background:#730076"></span><span>Morado</span></span>
+      <div class="dc-orb-wrap" role="img" aria-label="Colores a evitar: marfil, blanco, rojo y morado">
+        <span class="dc-orb" aria-hidden="true"></span>
+        <span class="dc-orb-names" aria-hidden="true"><span>Marfil</span><span>Blanco</span><span>Rojo</span><span>Morado</span></span>
       </div>
       <p class="dc-note" style="margin:22px auto 0;max-width:300px">Reservamos estos tonos para los novios. ¡Gracias por respetarlo!</p>
     </div>
@@ -1319,9 +1331,11 @@ function initEnvelope(){
     if(tapped)return;tapped=true;e.preventDefault();
     if(typeof window._startAudio==='function')window._startAudio();
     gsap.to('#envTap',{opacity:0,duration:.3});
-    envVideo.load();
     var playProm=envVideo.play();
-    gsap.fromTo(envVideo,{opacity:0},{opacity:1,duration:.45,delay:.05});
+    // la foto es el primer cuadro del video: se cambia sin fundido cuando ya hay imagen en movimiento
+    var shown=false;function showVid(){if(shown)return;shown=true;envVideo.style.opacity='1';}
+    envVideo.addEventListener('timeupdate',function(){if(envVideo.currentTime>0.04)showVid();});
+    envVideo.addEventListener('playing',function(){setTimeout(showVid,60);},{once:true});
     if(playProm!==undefined){playProm.catch(function(){finish();});}
     envVideo.addEventListener('timeupdate',function(){if(envVideo.currentTime>=3.5)finish();});
     envVideo.addEventListener('ended',finish,{once:true});
