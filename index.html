@@ -1238,10 +1238,6 @@ body{font-weight:500}
   <div class="snav-links" id="snavLinks">
     <span class="snav-pill" id="snavPill" aria-hidden="true"></span>
   </div>
-  <span class="snav-sep" aria-hidden="true"></span>
-  <button class="snav-share" id="snavShare" type="button" aria-label="Compartir invitación">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
-  </button>
   <button class="snav-menu" id="snavMenu" type="button" aria-expanded="false" aria-controls="smenu">☰ Menú</button>
 </nav>
 <div class="smenu" id="smenu" aria-hidden="true">
@@ -1699,11 +1695,6 @@ window.elyConfetti=function(from){
   btn.addEventListener('click',openM);
   document.getElementById('smenuX').addEventListener('click',closeM);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('on'))closeM();});
-  document.getElementById('snavShare').addEventListener('click',function(){
-    var u=location.origin+location.pathname;
-    if(navigator.share){navigator.share({title:'Boda Norma & Jorge',text:'Nos casamos el 5 de diciembre de 2026',url:u}).catch(function(){});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(u).then(function(){var t=document.getElementById('copyToast');if(t){t.textContent='¡Link copiado!';t.classList.add('show');setTimeout(function(){t.classList.remove('show');},1800);}});}
-  });
   var cur=-1;
   function setActive(i){if(i===cur)return;cur=i;
     A.forEach(function(a,k){a.classList.toggle('on',k===i);});B.forEach(function(b,k){b.classList.toggle('on',k===i);});
