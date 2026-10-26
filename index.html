@@ -41,8 +41,8 @@ html{scroll-behavior:auto}
 body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;font-weight:400;font-size:18px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
 /* ── ENVELOPE ── */
-#envelope-screen{position:fixed;inset:0;z-index:9000;background:#000000;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center}
-#envImage{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:1}
+#envelope-screen{position:fixed;inset:0;z-index:9000;background:#F5EFE6;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#envImage{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1}
 #envVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:2;opacity:0;pointer-events:none}
 .env-corner{position:absolute;width:32px;height:32px;opacity:0;z-index:1}
 .env-corner--tl{top:22px;left:22px;border-top:1px solid rgba(122,33,158,.38);border-left:1px solid rgba(122,33,158,.38)}
@@ -812,6 +812,27 @@ body{font-weight:500}
 .c3d-card::after{content:'';position:absolute;left:8%;right:8%;top:calc(100% + 2px);height:1.5px;background:linear-gradient(90deg,transparent,#F3DC8E,transparent);opacity:.8;pointer-events:none}
 .c3d-scene::after{content:'';position:absolute;left:8%;right:8%;top:calc(44% + 108px);height:60px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(122,33,158,.28),transparent 70%);filter:blur(6px);pointer-events:none;z-index:-1}
 body,button,input{font-variant-numeric:lining-nums}
+
+/* Carrusel: piso reflejante extendido hacia delante */
+.c3d-scene{--cb:90px;height:430px!important}
+@media(min-width:480px){.c3d-scene{--cb:116px;height:560px!important}}
+.c3d-card{top:36%!important}
+.c3d-refl,.c3d-card::after{display:none!important}
+.c3d-scene::after{display:none}
+.c3d-ring{z-index:2}
+.c3d-mirror{position:absolute;inset:0;pointer-events:none;z-index:1;perspective:1100px;transform-origin:50% calc(36% + var(--cb) + 3px);transform:scaleY(-1);opacity:.42;filter:blur(1px) saturate(1.05);
+  -webkit-mask-image:linear-gradient(to top,transparent 0,transparent calc(64% - var(--cb) - 3px),rgba(0,0,0,.95) calc(64% - var(--cb) - 3px),rgba(0,0,0,.3) calc(64% - var(--cb) + 55px),transparent calc(64% - var(--cb) + 140px));
+  mask-image:linear-gradient(to top,transparent 0,transparent calc(64% - var(--cb) - 3px),rgba(0,0,0,.95) calc(64% - var(--cb) - 3px),rgba(0,0,0,.3) calc(64% - var(--cb) + 55px),transparent calc(64% - var(--cb) + 140px))}
+.c3d-mirror .c3d-ring{position:absolute;inset:0;transform-style:preserve-3d}
+.c3d-mirror .c3d-card{box-shadow:none}
+.c3d-floor{position:absolute;left:-40%;right:-40%;top:calc(36% + var(--cb) + 2px);height:420px;z-index:0;pointer-events:none;transform-origin:50% 0;transform:rotateX(76deg);
+  background:radial-gradient(ellipse 46% 38% at 50% 0%,rgba(122,33,158,.38) 0%,rgba(122,33,158,.12) 45%,transparent 72%),
+             radial-gradient(ellipse 70% 60% at 50% 0%,rgba(252,248,242,.85) 0%,rgba(252,248,242,.5) 50%,transparent 80%),
+             linear-gradient(90deg,transparent 18%,rgba(243,220,142,.55) 50%,transparent 82%) top/100% 2px no-repeat;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.6) 45%,transparent 90%);mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.6) 45%,transparent 90%)}
+.c3d-floor::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(255,245,220,.45) 50%,transparent 65%);background-size:260% 100%;animation:floorSheen 7s ease-in-out infinite}
+@keyframes floorSheen{0%{background-position:130% 0}100%{background-position:-40% 0}}
+@media(prefers-reduced-motion:reduce){.c3d-floor::after{animation:none}}
 /* 10. Script/foil sin cortes */
 .heading .w,.heading-sm .w{padding:.22em .45em;margin:-.22em -.45em;line-height:1.25}
 .foil-txt,.env-title{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -830,7 +851,7 @@ body,button,input{font-variant-numeric:lining-nums}
 <div id="petals"></div>
 
 <div id="envelope-screen">
-  <img id="envImage" src="sobre.png" alt="Invitación Norma y Jorge" style="opacity:0">
+  <img id="envImage" src="sobre.jpg" alt="Invitación Norma y Jorge" style="opacity:0">
   <video id="envVideo" src="apertura.mp4" muted playsinline preload="auto"></video>
   <div class="env-tap" id="envTap">Toca para abrir</div>
 </div>
@@ -1115,6 +1136,8 @@ body,button,input{font-variant-numeric:lining-nums}
     <h2 class="heading-sm rv">Álbum</h2>
     <div class="orn rv" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <div class="c3d-scene" id="c3dScene" aria-label="Galería de fotos — arrastra para girar">
+      <div class="c3d-floor" aria-hidden="true"></div>
+      <div class="c3d-mirror" aria-hidden="true"><div class="c3d-ring c3d-ring-m" id="c3dRingM"></div></div>
       <div class="c3d-ring" id="c3dRing">
         <div class="c3d-card"><img src="g01.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g01.jpg')"></i></div>
         <div class="c3d-card"><img src="g02.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g02.jpg')"></i></div>
@@ -1281,13 +1304,16 @@ function initEnvelope(){
   var done=false;
   function finish(){
     if(done)return;done=true;
-    gsap.to(envFlash,{opacity:1,duration:.18,ease:'power2.in',onComplete:function(){
-      envScreen.style.display='none';
-      mainWrap.style.visibility='visible';
-      gsap.to(envFlash,{opacity:0,duration:.35,delay:.05});
-      initMain();
-      document.dispatchEvent(new Event('ely:open'));
-    }});
+    // la invitación queda lista debajo y el sobre se difumina encima (CSS, no depende de rAF)
+    mainWrap.style.visibility='visible';
+    window.scrollTo(0,0);
+    initMain();
+    document.dispatchEvent(new Event('ely:open'));
+    envScreen.style.pointerEvents='none';
+    envScreen.style.transition='opacity 1.3s cubic-bezier(.45,0,.25,1)';
+    requestAnimationFrame(function(){envScreen.style.opacity='0';});
+    setTimeout(function(){envScreen.style.opacity='0';},40);
+    setTimeout(function(){envScreen.style.display='none';},1450);
   }
   function onTap(e){
     if(tapped)return;tapped=true;e.preventDefault();
@@ -1297,8 +1323,9 @@ function initEnvelope(){
     var playProm=envVideo.play();
     gsap.fromTo(envVideo,{opacity:0},{opacity:1,duration:.45,delay:.05});
     if(playProm!==undefined){playProm.catch(function(){finish();});}
+    envVideo.addEventListener('timeupdate',function(){if(envVideo.currentTime>=3.5)finish();});
     envVideo.addEventListener('ended',finish,{once:true});
-    setTimeout(finish,12000);
+    setTimeout(finish,6500);
   }
   envScreen.addEventListener('click',onTap,{passive:false});
   envScreen.addEventListener('touchstart',onTap,{passive:false});
@@ -1869,7 +1896,9 @@ function initCarousel3D(){
   var cards=[].slice.call(ring.querySelectorAll('.c3d-card')),n=cards.length,R=Math.round(n*(window.innerWidth<480?136:176)/(2*Math.PI));
   cards.forEach(function(c,i){c.style.transform='rotateY('+(360/n*i)+'deg) translateZ('+R+'px)';});
   var rot=0,vel=0,drag=false,x0=0,lastX=0,moved=0,auto=0.14,idle=true,onScreen=true,resumeT=null;
-  function apply(){ring.style.transform='translateZ(-'+R+'px) rotateY('+rot+'deg)';}apply();
+  var ringM=document.getElementById('c3dRingM');
+  if(ringM){cards.forEach(function(c){var k=c.cloneNode(true);var rf=k.querySelector('.c3d-refl');if(rf)rf.remove();ringM.appendChild(k);});}
+  function apply(){var t='translateZ(-'+R+'px) rotateY('+rot+'deg)';ring.style.transform=t;if(ringM)ringM.style.transform=t;}apply();
   function tick(){if(!onScreen||drag)return;if(Math.abs(vel)>0.02){rot+=vel;vel*=0.95;}else if(idle&&!PK_RM){rot+=auto;}apply();}
   if(window.gsap)gsap.ticker.add(tick);
   if('IntersectionObserver' in window)new IntersectionObserver(function(es){onScreen=es[0].isIntersecting;}).observe(scene);
