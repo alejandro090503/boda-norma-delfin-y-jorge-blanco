@@ -872,6 +872,90 @@ body,button,input{font-variant-numeric:lining-nums}
 #invitacion #invHonorTxt{animation-delay:-3.2s}
 #invitacion .invite-verse-rut{animation:txtFloat 6.5s ease-in-out infinite,txtGlow 6.5s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){#invitacion .invite-verse p,#invitacion .invite-motiv,#invitacion .heading-names,#invitacion #invHonorTxt{animation:none!important}}
+
+/* ===== Cambios de la clienta v2 ===== */
+#invitacion .inv-big{animation:txtFloat 7s ease-in-out infinite,txtGlow 7s ease-in-out infinite}
+#invitacion .inv-big-sub{animation:txtFloat 6.5s ease-in-out -2s infinite}
+.inv-big{font-family:'Great Vibes',cursive;font-size:clamp(44px,12vw,56px);line-height:1.2;color:var(--accent);margin:30px auto 0;padding:0 .2em}
+.inv-big-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:21px;color:var(--brown);margin:4px 0 18px}
+/* contador elegante: medallones redondos sin cuadro */
+.cd-elegant{max-width:380px;margin:18px auto 0}
+.cd-elegant .cd-row{gap:10px;margin:0}
+.cd-elegant .cd-sep{display:none}
+.cd-elegant .cd-unit{width:76px;height:76px;padding:0;border-radius:50%;justify-content:center;position:relative;background:radial-gradient(circle at 35% 30%,#fff 0%,var(--card) 60%,#f3e8f5 100%);box-shadow:0 10px 26px -10px rgba(74,15,85,.45)}
+.cd-elegant .cd-unit::before{content:'';position:absolute;inset:0;border-radius:50%;padding:1.5px;background:var(--foil);background-size:200% 200%;animation:goldSweep 6s ease-in-out infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.cd-elegant .cd-unit::after{content:'';position:absolute;inset:5px;border-radius:50%;border:1px solid rgba(212,175,55,.35)}
+.cd-elegant .cd-value{font-size:28px;letter-spacing:0}
+.cd-elegant .cd-lbl{font-size:11px;margin-top:2px;letter-spacing:.14em}
+@media(max-width:360px){.cd-elegant .cd-unit{width:68px;height:68px}}
+/* familias sin cuadros */
+.fam2{max-width:340px;margin:26px auto 0}
+.fam2-g{padding:6px 0}
+.fam2-lbl{display:block;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.fam2-n{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:23px;color:var(--dark);line-height:1.45;margin:0}
+.fam2-sep{display:block;width:120px;height:1px;margin:20px auto;background:linear-gradient(90deg,transparent,#D4AF37,transparent);position:relative}
+.fam2-sep::after{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;transform:rotate(45deg);background:var(--foil)}
+/* ubicaciones sin cuadro */
+.loc-card{background:none!important;border:none!important;box-shadow:none!important;padding-left:0!important;padding-right:0!important}
+.loc-card::before{display:none!important}
+.loc-photo{margin:0 0 18px;border-radius:14px;box-shadow:0 18px 40px -18px rgba(42,11,51,.45)}
+.loc-divider{height:1px!important;width:150px;margin:34px auto!important;background:linear-gradient(90deg,transparent,#D4AF37,transparent)}
+/* itinerario morado (plantilla 153) */
+#siti{background:linear-gradient(175deg,#3d0f4a 0%,#4a1259 45%,#2a0b33 100%)!important;overflow:hidden}
+#siti .eyebrow{color:#F3DC8E!important}
+#siti .heading-sm{color:#F7E7CE!important}
+.timeline{margin-top:40px;position:relative;padding:18px 0 6px;min-height:300px}
+.tl-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:visible}
+.tl-svg-bg{stroke:rgba(247,231,206,.22);stroke-width:1;fill:none;stroke-dasharray:2 5}
+.tl-svg-path{stroke:#D4AF37;stroke-width:1.6;stroke-linecap:round;fill:none;filter:drop-shadow(0 0 6px rgba(212,175,55,.45))}
+.tl-row{position:relative;z-index:1;min-height:158px;display:flex;align-items:center;margin-bottom:14px}
+.tl-row[data-side="left"]{padding-left:50px;padding-right:34%;justify-content:flex-start;text-align:left}
+.tl-row[data-side="right"]{padding-right:50px;padding-left:34%;justify-content:flex-end;text-align:right}
+.tl-row-inner{display:flex;flex-direction:column;gap:2px;position:relative;padding:6px 4px}
+.tl-row-inner::before{content:'';position:absolute;inset:-6px -14px;background:radial-gradient(ellipse at center,rgba(42,11,51,.92) 0%,rgba(42,11,51,.6) 55%,rgba(42,11,51,0) 100%);z-index:-1;border-radius:16px}
+.tl-t{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:15px;color:#F3DC8E;letter-spacing:2.5px;text-transform:uppercase;line-height:1}
+.tl-ev{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#F6EEF2;line-height:1.22;margin-top:5px}
+.tl-de{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:16px;color:#E6D3EE;line-height:1.5;margin-top:3px}
+.tl-row-inner>*{opacity:0;transform:translateY(8px);transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+.tl-row.on .tl-row-inner>*{opacity:1;transform:none}
+.tl-row.on .tl-ev{transition-delay:.15s}.tl-row.on .tl-de{transition-delay:.3s}
+.tl-dot{position:absolute;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:#2a0b33;border:1.5px solid #D4AF37;transform:scale(0);transition:transform .55s cubic-bezier(.34,1.56,.64,1),box-shadow .55s,background .55s;z-index:2}
+.tl-row[data-side="left"] .tl-dot{left:22px}.tl-row[data-side="right"] .tl-dot{right:22px}
+.tl-row.on .tl-dot{transform:scale(1);background:#D4AF37;box-shadow:0 0 0 3px rgba(42,11,51,.9),0 0 12px rgba(212,175,55,.55),0 0 24px rgba(198,171,255,.5)}
+.tl-row[data-side="right"] .tl-dot{border-color:#c6abff}
+.tl-row[data-side="right"].on .tl-dot{background:#c6abff}
+.tl-row[data-side="right"] .tl-t{color:#d9c4ff}
+.tl-orn{position:absolute;top:50%;width:40px;height:40px;margin-top:-20px;border-radius:50%;border:1px dashed rgba(198,171,255,.4);opacity:0;animation:tlOrnRotate 22s linear infinite;transition:opacity .9s;pointer-events:none}
+.tl-row[data-side="left"] .tl-orn{left:9px}.tl-row[data-side="right"] .tl-orn{right:9px}
+.tl-row.on .tl-orn{opacity:1}
+@keyframes tlOrnRotate{to{transform:rotate(360deg)}}
+.tl-pulse{position:absolute;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;border:1.5px solid #D4AF37;opacity:0;pointer-events:none}
+.tl-row[data-side="left"] .tl-pulse{left:20px}.tl-row[data-side="right"] .tl-pulse{right:20px}
+.tl-row.on .tl-pulse{animation:tlPulse 2.8s ease-out 1}
+@keyframes tlPulse{0%{transform:scale(1);opacity:.85}100%{transform:scale(3);opacity:0}}
+/* dress code (plantilla 153) */
+.dc-figs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:28px auto 24px;max-width:340px;position:relative}
+.dc-figs::before{content:'';position:absolute;left:50%;top:14%;bottom:14%;width:1px;background:linear-gradient(to bottom,transparent,rgba(212,175,55,.6),transparent)}
+.dc-figs .dc-fig img{height:clamp(230px,58vw,280px);width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 10px 20px rgba(42,11,51,.25))}
+.dc-code{display:inline-flex;flex-direction:column;align-items:center;gap:2px;margin:4px auto 18px;padding:12px 34px;border-top:1px solid rgba(212,175,55,.6);border-bottom:1px solid rgba(212,175,55,.6);background:rgba(255,253,249,.7)}
+.dc-code-lbl{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:14px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent)}
+.dc-code-val{font-family:'Great Vibes',cursive;font-size:40px;line-height:1.2;color:var(--gold);padding:0 .2em}
+.dc-avoid-wrap{margin:8px auto 0;padding-top:22px;border-top:1px solid rgba(212,175,55,.35);max-width:340px}
+.dc-avoid-head{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:8px}
+.dc-avoid-lbl{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:15px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.dc-avoid-lbl strong{color:#b4271a}
+.dc-avoid-clarify{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:17px;color:var(--text);line-height:1.6;max-width:310px;margin:0 auto 18px}
+.dc-avoid-clarify strong{color:#b4271a;font-style:normal}
+.dc-avoid-row{display:flex;justify-content:center;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.dc-avoid-sw{display:flex;flex-direction:column;align-items:center;gap:8px}
+.dc-avoid-circle{width:42px;height:42px;border-radius:50%;box-shadow:0 2px 10px rgba(28,26,23,.15),inset 0 1px 2px rgba(255,255,255,.3);position:relative}
+.dc-avoid-circle::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(212,175,55,.5)}
+.dc-avoid-circle.x::before{content:'';position:absolute;inset:0;border-radius:50%;background:linear-gradient(45deg,transparent 43%,rgba(180,39,26,.92) 43%,rgba(180,39,26,.92) 57%,transparent 57%);z-index:2}
+.dc-avoid-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:15px;color:var(--text)}
+.dc-avoid-msg{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:18px;color:var(--accent);line-height:1.6;max-width:310px;margin:0 auto}
+/* pie con insignia */
+.footer-insignia{display:block;width:clamp(170px,48vw,220px);height:auto;margin:0 auto 6px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.4))}
+.footer-con{font-family:'Great Vibes',cursive;font-size:34px;color:#F3DC8E;margin:0}
 /* 10. Script/foil sin cortes */
 .heading .w,.heading-sm .w{padding:.22em .45em;margin:-.22em -.45em;line-height:1.25}
 .foil-txt,.env-title{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -934,9 +1018,8 @@ body,button,input{font-variant-numeric:lining-nums}
       <p>El amor no promete perfección, promete permanencia, promete quedarse cuando todos se van.</p>
       <p class="invite-verse-end">Promete elegir el mismo corazón una vez más, porque cuando Dios une dos corazones con verdad, ni el tiempo, ni la distancia los podrá separar.</p>
     </div>
-    <span class="eyebrow invite-motiv">Motivados por el amor que nos tenemos<br>y con la bendición de nuestros padres</span>
-    <h1 class="heading heading-names">Norma<br><span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;color:var(--gold);display:block;margin:4px 0">y</span>Jorge</h1>
-    <p class="sub" id="invHonorTxt" style="margin-top:8px;font-weight:600;color:var(--brown)">Tenemos el honor de invitarte a<br>nuestra boda religiosa</p>
+    <p class="inv-big">Están cordialmente invitados</p>
+    <p class="inv-big-sub">a nuestra boda religiosa</p>
     <div class="orn bot"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--text);line-height:1.9;margin-top:26px;font-weight:400">
       <span class="dato">Sábado 5 de diciembre de 2026</span><br>
@@ -957,7 +1040,7 @@ body,button,input{font-variant-numeric:lining-nums}
   <!-- CUENTA REGRESIVA -->
   <section id="cd-section" class="sec-sm rv" style="text-align:center">
     <h2 class="heading-sm">Nuestro gran día es en</h2>
-    <div class="card" style="max-width:380px;margin:0 auto">
+    <div class="cd-elegant">
       <div class="cd-row">
         <div class="cd-unit">
           <span class="cd-value" id="cdDias">000</span>
@@ -987,21 +1070,12 @@ body,button,input{font-variant-numeric:lining-nums}
     <span class="eyebrow" style="color:var(--sage)">Con la bendición de</span>
     <h2 class="heading-sm">Nuestras Familias</h2>
     <div class="orn" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
-    <div class="fam-grid rv">
-      <div class="fam-card">
-        <span class="fam-role-lbl">Padres de la Novia</span>
-        <span class="fam-name fam-pend">Por confirmar</span>
-      </div>
-      <div class="fam-card">
-        <span class="fam-role-lbl">Padres del Novio</span>
-        <span class="fam-name fam-pend">Por confirmar</span>
-      </div>
-    </div>
-    <!-- PENDIENTE: nombres de padres y padrinos -->
-    <div class="orn" style="margin:40px auto 20px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
-    <span class="eyebrow" style="font-size:16px;margin-bottom:16px">Nuestros Padrinos</span>
-    <div class="fam-card" style="max-width:300px;margin:0 auto">
-      <span class="fam-name fam-pend">Por confirmar</span>
+    <div class="fam2">
+      <div class="fam2-g"><span class="fam2-lbl">Padres de la Novia</span><p class="fam2-n">Alejandra Rico</p><p class="fam2-n">Nelson Delfin</p><p class="fam2-n">Felipe Zermeño</p></div>
+      <span class="fam2-sep" aria-hidden="true"></span>
+      <div class="fam2-g"><span class="fam2-lbl">Padres del Novio</span><p class="fam2-n">Luz Torres</p><p class="fam2-n">Carlos Blanco</p></div>
+      <span class="fam2-sep" aria-hidden="true"></span>
+      <div class="fam2-g"><span class="fam2-lbl">Nuestras Hijas</span><p class="fam2-n">Sarah Blanco</p><p class="fam2-n">Lucia Blanco</p></div>
     </div>
   </section>
 
@@ -1045,48 +1119,43 @@ body,button,input{font-variant-numeric:lining-nums}
   </section>
 
   <!-- ITINERARIO V3 -->
-  <section id="siti" class="sec" style="text-align:center">
-    <h2 class="heading-sm rv">Itinerario</h2>
-    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--gold);margin-top:6px;font-weight:500">Un día para recordar</p>
-    <div class="orn rv" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
-    <div class="itv3">
-      <div class="itv3-track"></div>
-      <div class="itv3-glow" id="itvGlow"></div>
-      <div class="itv3-item">
-        <div class="itv3-gem"></div>
-        <div class="itv3-time">12:00 p.m.</div>
-        <div class="itv3-ev">Ceremonia Religiosa</div>
-        <div class="itv3-sub">Templo de San Diego</div>
-      </div>
-      <div class="itv3-item">
-        <div class="itv3-gem itv3-gem-sage"></div>
-        <div class="itv3-time">6:00 p.m.</div>
-        <div class="itv3-ev">Recepción</div>
-        <div class="itv3-sub">Factory of Dreams Hall</div>
-      </div>
-      <!-- PENDIENTE: itinerario detallado de la recepción -->
+  <section id="siti" class="sec" style="text-align:center" data-top="#3d0f4a" data-bot="#2a0b33">
+    <span class="eyebrow">El Programa del Día</span>
+    <h2 class="heading-sm">Itinerario</h2>
+    <div class="orn"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
+    <div class="timeline" id="tlWrap">
+      <svg class="tl-svg" id="tlSvg" preserveAspectRatio="none" aria-hidden="true"><path class="tl-svg-bg" id="tlPathBg"/><path class="tl-svg-path" id="tlPath"/></svg>
+      <div class="tl-row" data-side="left"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+        <div class="tl-row-inner"><p class="tl-t">12:00 PM</p><p class="tl-ev">Ceremonia Religiosa</p><p class="tl-de">Templo de San Diego</p></div></div>
+      <div class="tl-row" data-side="right"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+        <div class="tl-row-inner"><p class="tl-t">6:00 PM</p><p class="tl-ev">Recepción</p><p class="tl-de">Factory of Dreams Hall</p></div></div>
+      <!-- PENDIENTE: itinerario detallado de la clienta -->
     </div>
   </section>
 
   <!-- DRESS CODE -->
   <section id="vestimenta" class="sec rv" style="text-align:center;background:var(--surface)">
     <span class="eyebrow">Código de Vestimenta</span>
-    <h2 class="heading-sm">Formal</h2>
-    <div class="orn" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
-    <p class="dc-note">Acompáñanos vestido para la ocasión</p>
-
-    <div class="dc-figures">
-      <div class="dc-fig"><img src="caballero.png" alt="Ilustración de caballero con traje formal"><span class="dc-fig-label">Caballeros</span></div>
-      <div class="dc-fig"><img src="dama.png" alt="Ilustración de dama con vestido largo formal"><span class="dc-fig-label">Damas</span></div>
+    <h2 class="heading-sm">Etiqueta</h2>
+    <div class="orn"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
+    <div class="dc-figs">
+      <div class="dc-fig"><img src="caballero.png?v=2" alt="Caballero con traje formal"></div>
+      <div class="dc-fig"><img src="dama.png?v=2" alt="Dama con vestido formal"></div>
     </div>
-
-    <div class="dc-avoid-block">
-      <p class="dc-avoid">Por favor evita estos colores</p>
-      <div class="dc-orb-wrap" role="img" aria-label="Colores a evitar: marfil, blanco, rojo y morado">
-        <span class="dc-orb" aria-hidden="true"></span>
-        <span class="dc-orb-names" aria-hidden="true"><span>Marfil</span><span>Blanco</span><span>Rojo</span><span>Morado</span></span>
+    <div class="dc-code"><span class="dc-code-lbl">Dress Code</span><span class="dc-code-val">Formal</span></div>
+    <div class="dc-avoid-wrap">
+      <div class="dc-avoid-head">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke="#b4271a" stroke-width="1.7"/><line x1="5.4" y1="5.4" x2="18.6" y2="18.6" stroke="#b4271a" stroke-width="1.7"/></svg>
+        <span class="dc-avoid-lbl">Tonos a <strong>evitar</strong></span>
       </div>
-      <p class="dc-note" style="margin:22px auto 0;max-width:300px">Reservamos estos tonos para los novios. ¡Gracias por respetarlo!</p>
+      <p class="dc-avoid-clarify">Estos <u>no</u> son colores sugeridos. Con cariño, te pedimos <strong>no</strong> usarlos en tu vestuario.</p>
+      <div class="dc-avoid-row">
+        <div class="dc-avoid-sw"><div class="dc-avoid-circle x" style="background:#FFFFED;border:1px solid #ddd"></div><span class="dc-avoid-name">Marfil</span></div>
+        <div class="dc-avoid-sw"><div class="dc-avoid-circle x" style="background:#FFFFFF;border:1px solid #ddd"></div><span class="dc-avoid-name">Blanco</span></div>
+        <div class="dc-avoid-sw"><div class="dc-avoid-circle x" style="background:#B80009"></div><span class="dc-avoid-name">Rojo</span></div>
+        <div class="dc-avoid-sw"><div class="dc-avoid-circle x" style="background:#730076"></div><span class="dc-avoid-name">Púrpura</span></div>
+      </div>
+      <p class="dc-avoid-msg">El blanco está reservado para la novia y el color púrpura para las damas.</p>
     </div>
   </section>
 
@@ -1134,43 +1203,6 @@ body,button,input{font-variant-numeric:lining-nums}
   </section>
 
   <!-- HOSPEDAJE -->
-  <section id="hospedaje" class="sec rv" style="text-align:center">
-    <span class="eyebrow">Para tu estancia</span>
-    <h2 class="heading-sm">Hospedaje y Sedes</h2>
-    <div class="orn" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
-    <div class="hv-switch" role="tablist" aria-label="Vista">
-      <span class="hv-ind" id="hvInd" aria-hidden="true"></span>
-      <button type="button" role="tab" class="hv-btn on" id="hvLista" aria-selected="true">Lista</button>
-      <button type="button" role="tab" class="hv-btn" id="hvMapa" aria-selected="false">Mapa</button>
-    </div>
-    <div class="hv-panel" id="hvPanelLista">
-      <!-- PENDIENTE: hoteles sugeridos (fotos de Booking, dirección, distancia a la recepción) -->
-      <div class="card hosp-card" style="max-width:340px;margin:0 auto">
-        <p class="sub" style="font-size:18px;color:var(--text)">Si vienes de fuera, muy pronto compartiremos aquí hoteles cercanos a la recepción.</p>
-        <p class="hosp-city" style="margin:14px 0 0">Por confirmar</p>
-      </div>
-    </div>
-    <div class="hv-panel" id="hvPanelMapa" hidden>
-      <div class="pmap-frame">
-        <div class="pmap" id="pmap" aria-label="Mapa de las sedes"></div>
-        <div class="pmap-ctrl">
-          <button type="button" id="pmapIn" aria-label="Acercar">+</button>
-          <button type="button" id="pmapOut" aria-label="Alejar">−</button>
-          <button type="button" id="pmapAll" aria-label="Ver todo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
-        </div>
-        <p class="pmap-tip" id="pmapTip">Toca una sede para ver los detalles</p>
-        <div class="pmap-card" id="pmapCard" aria-live="polite">
-          <button type="button" class="pmap-x" id="pmapX" aria-label="Cerrar">✕</button>
-          <div class="pmap-num" id="pmapNum">1</div>
-          <p class="pmap-type" id="pmapType"></p>
-          <p class="pmap-name" id="pmapName"></p>
-          <p class="pmap-addr" id="pmapAddr"></p>
-          <p class="pmap-dist" id="pmapDist"></p>
-          <div class="pmap-btns"><a id="pmapGo" target="_blank" rel="noopener">Ver ubicación</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ÁLBUM -->
   <section id="salbum" class="sec" style="text-align:center">
@@ -1264,15 +1296,16 @@ body,button,input{font-variant-numeric:lining-nums}
     </div>
     <div class="no-ninos rv" style="max-width:440px;margin:28px auto 0">
       <span class="no-ninos-lbl">Solo adultos</span>
-      <p class="no-ninos-txt">Amamos a sus pequeños, pero esta celebración será solo para adultos. Gracias por tu comprensión; esperamos compartir contigo un día inolvidable.</p>
+      <p class="no-ninos-txt">Con mucho cariño les compartimos que nuestra celebración será exclusivamente para adultos. Gracias por su comprensión.</p>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer id="footer">
-    <div class="orn" style="margin-bottom:24px"><div class="orn-line" style="background:linear-gradient(to right,transparent,rgba(122,33,158,.3),transparent)"></div><div class="orn-diamond-sm" style="background:rgba(122,33,158,.5)"></div><div class="orn-diamond" style="background:rgba(122,33,158,.5)"></div><div class="orn-diamond-sm" style="background:rgba(122,33,158,.5)"></div><div class="orn-line" style="background:linear-gradient(to right,transparent,rgba(122,33,158,.3),transparent)"></div></div>
-    <div class="footer-names rv">Norma y Jorge</div>
-    <div class="footer-date rv">05 · Diciembre · 2026</div>
+    <img class="footer-insignia" src="insignia-nj.png" alt="Monograma N&amp;J">
+    <p class="footer-con">Con amor</p>
+    <div class="footer-names">Norma y Jorge</div>
+    <div class="footer-date">05 · Diciembre · 2026</div>
     <div class="footer-hr"></div>
     <a href="https://www.instagram.com/elysium.invitaciones" target="_blank" rel="noopener" class="footer-credit rv">@elysium.invitaciones</a>
   </footer>
@@ -1871,7 +1904,7 @@ function initSectionFades(){
 
 /* 3. Tintas */
 function initInks(){
-  var map=[['invitacion','oval',0],['familias','top',1],['ubicacion','corner',0],['siti','hero',1],['vestimenta','footer',0],
+  var map=[['invitacion','oval',0],['familias','top',1],['ubicacion','corner',0],['vestimenta','footer',0],
            ['regalos','oval',1],['salbum','top',0],['rsvp','corner',1]];
   map.forEach(function(m){var s=document.getElementById(m[0]);if(!s)return;
     var d=document.createElement('div');d.className='ink-bg'+(m[2]?' flip':'')+(m[1]==='oval'?' oval':'');d.setAttribute('aria-hidden','true');
@@ -2062,6 +2095,26 @@ function initRsvpPK(){
 document.addEventListener('DOMContentLoaded',function(){initInks();initSectionFades();initRsvpPK();initHospMap();});
 document.addEventListener('ely:open',function(){initHeroScroll();initEnvRain();initCarousel3D();setTimeout(initSectionFades,200);});
 
+</script>
+<script>
+/* Itinerario — camino en S (plantilla 153) */
+document.addEventListener('ely:open',function(){setTimeout(function(){
+  var wrap=document.getElementById('tlWrap'),svg=document.getElementById('tlSvg'),path=document.getElementById('tlPath'),bg=document.getElementById('tlPathBg');
+  if(!wrap||!svg||!path)return;var rows=[].slice.call(wrap.querySelectorAll('.tl-row'));if(!rows.length)return;var data=null;
+  function build(){var rect=wrap.getBoundingClientRect(),W=rect.width,H=wrap.offsetHeight;if(W<10)return;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('width',W);svg.setAttribute('height',H);
+    var pts=rows.map(function(r){var b=r.getBoundingClientRect();return{x:r.dataset.side==='left'?29:W-29,y:(b.top-rect.top)+b.height/2};});
+    var d='M '+pts[0].x+' '+pts[0].y;for(var i=1;i<pts.length;i++){var a=pts[i-1],c=pts[i],m=(a.y+c.y)/2;d+=' C '+a.x+' '+m+', '+c.x+' '+m+', '+c.x+' '+c.y;}
+    path.setAttribute('d',d);bg.setAttribute('d',d);var len=path.getTotalLength();path.style.strokeDasharray=len;path.style.strokeDashoffset=len;data={len:len};}
+  build();window.addEventListener('resize',function(){setTimeout(build,150);});
+  function prog(p){if(!data)return;path.style.strokeDashoffset=data.len*(1-p);var n=Math.ceil(p*rows.length);rows.forEach(function(r,i){r.classList.toggle('on',i<n);});}
+  if(window.ScrollTrigger&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    ScrollTrigger.create({trigger:wrap,start:'top 82%',end:'bottom 62%',scrub:.6,onUpdate:function(s){prog(s.progress);}});
+  }
+  // respaldo: si el scroll no dispara, se revela al pasar por la sección
+  function chk(){var b=wrap.getBoundingClientRect();if(b.top<innerHeight*.5&&!rows[rows.length-1].classList.contains('on'))prog(1);}
+  window.addEventListener('scroll',chk,{passive:true});
+},300);});
 </script>
 </body>
 </html>
