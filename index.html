@@ -956,6 +956,36 @@ body,button,input{font-variant-numeric:lining-nums}
 /* pie con insignia */
 .footer-insignia{display:block;width:clamp(170px,48vw,220px);height:auto;margin:0 auto 6px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.4))}
 .footer-con{font-family:'Great Vibes',cursive;font-size:34px;color:#F3DC8E;margin:0}
+
+/* ===== Cambios v3 ===== */
+.footer-logo{display:block;width:clamp(170px,48vw,210px);height:auto;margin:0 auto 10px;filter:drop-shadow(0 8px 22px rgba(0,0,0,.45));animation:logoGlow 6s ease-in-out infinite}
+@keyframes logoGlow{0%,100%{filter:drop-shadow(0 8px 22px rgba(0,0,0,.45)) drop-shadow(0 0 8px rgba(212,175,55,.1))}50%{filter:drop-shadow(0 8px 22px rgba(0,0,0,.45)) drop-shadow(0 0 18px rgba(212,175,55,.35))}}
+.tl-more{display:inline-flex;align-items:center;gap:7px;margin-top:9px;padding:8px 14px;border:1px solid rgba(247,231,206,.45);border-radius:50px;background:rgba(247,231,206,.1);cursor:pointer;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:15px;color:#F3DC8E;min-height:42px;-webkit-tap-highlight-color:transparent}
+.tl-row[data-side="right"] .tl-more{flex-direction:row-reverse;align-self:flex-end}
+.tl-more-hand{display:flex;width:19px;height:19px;animation:handFloat 1.9s ease-in-out infinite}
+.tl-more-hand svg{width:100%;height:100%}
+@keyframes handFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-5px) rotate(4deg)}}
+.det-overlay{position:fixed;inset:0;z-index:9700;display:flex;align-items:center;justify-content:center;padding:24px 20px;background:rgba(30,6,38,.6);opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s}
+.det-overlay.open{opacity:1;visibility:visible}
+.det-card{position:relative;width:100%;max-width:380px;text-align:center;padding:44px 28px 38px;border-radius:8px;border:1px solid rgba(212,175,55,.5);background:linear-gradient(rgba(255,253,249,.97),rgba(255,253,249,.97));box-shadow:0 30px 80px rgba(30,6,38,.5);transform:translateY(22px) scale(.97);opacity:0;transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .5s}
+.det-overlay.open .det-card{transform:none;opacity:1}
+.det-card::before{content:'';position:absolute;inset:10px;border:1px solid rgba(212,175,55,.3);pointer-events:none;border-radius:4px}
+.det-corner{position:absolute;width:14px;height:14px;border:0 solid #C9A646}
+.det-tl{top:4px;left:4px;border-top-width:1.6px;border-left-width:1.6px}.det-tr{top:4px;right:4px;border-top-width:1.6px;border-right-width:1.6px}
+.det-bl{bottom:4px;left:4px;border-bottom-width:1.6px;border-left-width:1.6px}.det-br{bottom:4px;right:4px;border-bottom-width:1.6px;border-right-width:1.6px}
+.det-close{position:absolute;top:12px;right:12px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:50%;background:#fff;color:var(--dark);cursor:pointer;z-index:2}
+.det-close svg{width:17px;height:17px}
+.det-hora{display:inline-block;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:15px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.det-titulo{font-family:'Great Vibes',cursive;font-size:clamp(36px,10vw,44px);line-height:1.2;color:var(--accent);margin:0;padding:0 .2em}
+.det-orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:12px auto 14px;max-width:190px}
+.det-orn-line{flex:1;height:1px;background:linear-gradient(to right,transparent,#C9A646,transparent)}
+.det-orn-d{width:6px;height:6px;background:var(--accent);transform:rotate(45deg)}
+.det-lugar{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:19px;color:var(--dark);margin:0 0 10px}
+.det-texto{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:18px;color:var(--text);line-height:1.7;max-width:300px;margin:0 auto}
+.det-link{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin-top:20px;padding:12px 26px;border-radius:50px;text-decoration:none;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:linear-gradient(140deg,#a45cc6,var(--accent) 55%,#4a0f55)}
+.det-link[hidden]{display:none}
+body.det-abierto{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.tl-more-hand,.footer-logo{animation:none}}
 /* 10. Script/foil sin cortes */
 .heading .w,.heading-sm .w{padding:.22em .45em;margin:-.22em -.45em;line-height:1.25}
 .foil-txt,.env-title{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -1014,9 +1044,6 @@ body,button,input{font-variant-numeric:lining-nums}
     <div class="orn"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <div class="invite-verse">
       <p class="invite-verse-rut">A dónde tú vayas, iré yo.<br>Dónde tú vivas, viviré yo.<br>Tu pueblo será mi pueblo<br>y tu Dios será mi Dios.</p>
-      <p>Porque el amor no solamente es sentir, es elegir.</p>
-      <p>El amor no promete perfección, promete permanencia, promete quedarse cuando todos se van.</p>
-      <p class="invite-verse-end">Promete elegir el mismo corazón una vez más, porque cuando Dios une dos corazones con verdad, ni el tiempo, ni la distancia los podrá separar.</p>
     </div>
     <p class="inv-big">Están cordialmente invitados</p>
     <p class="inv-big-sub">a nuestra boda religiosa</p>
@@ -1126,10 +1153,23 @@ body,button,input{font-variant-numeric:lining-nums}
     <div class="timeline" id="tlWrap">
       <svg class="tl-svg" id="tlSvg" preserveAspectRatio="none" aria-hidden="true"><path class="tl-svg-bg" id="tlPathBg"/><path class="tl-svg-path" id="tlPath"/></svg>
       <div class="tl-row" data-side="left"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
-        <div class="tl-row-inner"><p class="tl-t">12:00 PM</p><p class="tl-ev">Ceremonia Religiosa</p><p class="tl-de">Templo de San Diego</p></div></div>
+        <div class="tl-row-inner"><p class="tl-t">12:00 PM</p><p class="tl-ev">Ceremonia Religiosa</p><p class="tl-de">Templo de San Diego</p><button class="tl-more" type="button" onclick="abrirDetalle(this)" data-hora="12:00 PM" data-titulo="Ceremonia Religiosa" data-lugar="Templo de San Diego" data-texto="Te pedimos llegar 30 minutos antes de la ceremonia." data-link="" data-linktxt=""><span class="tl-more-hand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V12m0-1a1.5 1.5 0 0 1 3 0v4.5a5.5 5.5 0 0 1-5.5 5.5h-1a5.5 5.5 0 0 1-5.5-5.5V13a1.5 1.5 0 0 1 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="tl-more-txt">Toca para abrir</span></button></div></div>
       <div class="tl-row" data-side="right"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
-        <div class="tl-row-inner"><p class="tl-t">6:00 PM</p><p class="tl-ev">Recepción</p><p class="tl-de">Factory of Dreams Hall</p></div></div>
-      <!-- PENDIENTE: itinerario detallado de la clienta -->
+        <div class="tl-row-inner"><p class="tl-t">1:30 PM</p><p class="tl-ev">Salida de los Novios</p><p class="tl-de">Del templo y sesión de fotos con familiares y amigos</p></div></div>
+      <div class="tl-row" data-side="left"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+        <div class="tl-row-inner"><p class="tl-t">6:00 PM</p><p class="tl-ev">Recepción</p><p class="tl-de">Factory of Dreams Hall</p><button class="tl-more" type="button" onclick="abrirDetalle(this)" data-hora="6:00 PM" data-titulo="Recepción" data-lugar="Factory of Dreams Hall" data-texto="Hay ubicación disponible para estacionar tu auto cerca de la recepción." data-link="https://maps.apple.com/place?address=279%20Landis%20Ave,%20Chula%20Vista,%20CA%20%2091910,%20Estados%20Unidos&amp;coordinate=32.642041,-117.081070&amp;name=Parking&amp;place-id=I81F44161F36640C7&amp;map=explore" data-linktxt="Ver ubicación del parking"><span class="tl-more-hand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V12m0-1a1.5 1.5 0 0 1 3 0v4.5a5.5 5.5 0 0 1-5.5 5.5h-1a5.5 5.5 0 0 1-5.5-5.5V13a1.5 1.5 0 0 1 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="tl-more-txt">Toca para abrir</span></button></div></div>
+      <div class="tl-row" data-side="right"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+        <div class="tl-row-inner"><p class="tl-t">6:30 PM</p><p class="tl-ev">Cena</p></div></div>
+      <div class="tl-row" data-side="left"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+        <div class="tl-row-inner"><p class="tl-t">7:30 PM</p><p class="tl-ev">Slide Show</p></div></div>
+      <div class="tl-row" data-side="right"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+        <div class="tl-row-inner"><p class="tl-t">8:10 PM</p><p class="tl-ev">Brindis y Pastel</p></div></div>
+      <div class="tl-row" data-side="left"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+        <div class="tl-row-inner"><p class="tl-t">8:30 PM</p><p class="tl-ev">Baile de los Novios</p></div></div>
+      <div class="tl-row" data-side="right"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+        <div class="tl-row-inner"><p class="tl-t">9:00 PM</p><p class="tl-ev">¡A Celebrar!</p></div></div>
+      <div class="tl-row" data-side="left"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+        <div class="tl-row-inner"><p class="tl-t">12:00 AM</p><p class="tl-ev">Fin de la Velada</p></div></div>
     </div>
   </section>
 
@@ -1308,7 +1348,17 @@ body,button,input{font-variant-numeric:lining-nums}
 
   <!-- FOOTER -->
   <footer id="footer">
-    <img class="footer-insignia" src="insignia-nj.png" alt="Monograma N&amp;J">
+    <svg class="footer-logo" viewBox="0 0 300 300" role="img" aria-label="Monograma N y J">
+      <defs><linearGradient id="njGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a6a12"/><stop offset=".3" stop-color="#F3DC8E"/><stop offset=".55" stop-color="#C9A646"/><stop offset=".8" stop-color="#FBEFC0"/><stop offset="1" stop-color="#9A7A1E"/></linearGradient></defs>
+      <g fill="none" stroke="url(#njGold)">
+        <path d="M150 12a138 138 0 0 1 138 133M150 288a138 138 0 0 1-138-133M150 288a138 138 0 0 0 138-133M150 12a138 138 0 0 0-138 133" stroke-width="2.2"/>
+        <circle cx="150" cy="150" r="128" stroke-width="1.2"/>
+      </g>
+      <circle cx="12" cy="150" r="5" fill="url(#njGold)"/><circle cx="288" cy="150" r="5" fill="url(#njGold)"/>
+      <text x="112" y="178" text-anchor="middle" font-family="'Great Vibes',cursive" font-size="132" fill="url(#njGold)">N</text>
+      <text x="196" y="196" text-anchor="middle" font-family="'Great Vibes',cursive" font-size="132" fill="url(#njGold)">J</text>
+      <path d="M150 176c-11-9-20-15-20-24 0-6 5-10 10-10 4 0 8 2 10 6 2-4 6-6 10-6 5 0 10 4 10 10 0 9-9 15-20 24z" fill="url(#njGold)" stroke="#6b5021" stroke-width=".6"/>
+    </svg>
     <p class="footer-con">Con amor</p>
     <div class="footer-names">Norma y Jorge</div>
     <div class="footer-date">05 · Diciembre · 2026</div>
@@ -1338,6 +1388,18 @@ body,button,input{font-variant-numeric:lining-nums}
 </button>
 <audio id="bgAudio" loop preload="none"><source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/boda-norma-delfin-y-jorge-blanco/cancion.mp3" type="audio/mpeg"></audio>
 <div id="env-flash"></div>
+<div class="det-overlay" id="detOverlay" role="dialog" aria-modal="true" aria-labelledby="detTitulo" onclick="if(event.target===this)cerrarDetalle()">
+  <div class="det-card">
+    <span class="det-corner det-tl"></span><span class="det-corner det-tr"></span><span class="det-corner det-bl"></span><span class="det-corner det-br"></span>
+    <button class="det-close" type="button" onclick="cerrarDetalle()" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <span class="det-hora" id="detHora"></span>
+    <p class="det-titulo" id="detTitulo"></p>
+    <div class="det-orn"><span class="det-orn-line"></span><span class="det-orn-d"></span><span class="det-orn-line"></span></div>
+    <p class="det-lugar" id="detLugar"></p>
+    <p class="det-texto" id="detTexto"></p>
+    <a class="det-link" id="detLink" target="_blank" rel="noopener" hidden></a>
+  </div>
+</div>
 <!-- MENÚ DE SECCIONES -->
 <nav class="snav" id="snav" aria-label="Secciones">
   <a class="snav-mono" href="#hero" aria-label="Inicio">N<span class="foil-txt">&amp;</span>J</a>
@@ -2121,6 +2183,14 @@ document.addEventListener('ely:open',function(){setTimeout(function(){
   function chk(){var b=wrap.getBoundingClientRect();if(b.top<innerHeight*.5&&!rows[rows.length-1].classList.contains('on'))prog(1);}
   window.addEventListener('scroll',chk,{passive:true});
 },300);});
+</script>
+<script>
+function abrirDetalle(btn){var ov=document.getElementById('detOverlay');if(!ov)return;
+  ['Hora','Titulo','Lugar','Texto'].forEach(function(k){document.getElementById('det'+k).textContent=btn.dataset[k.toLowerCase()]||'';});
+  var a=document.getElementById('detLink');if(btn.dataset.link){a.href=btn.dataset.link;a.textContent=btn.dataset.linktxt||'Ver ubicación';a.hidden=false;}else{a.hidden=true;}
+  ov.classList.add('open');document.body.classList.add('det-abierto');}
+function cerrarDetalle(){var ov=document.getElementById('detOverlay');if(!ov)return;ov.classList.remove('open');document.body.classList.remove('det-abierto');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarDetalle();});
 </script>
 </body>
 </html>
