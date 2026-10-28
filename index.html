@@ -986,6 +986,13 @@ body,button,input{font-variant-numeric:lining-nums}
 .det-link[hidden]{display:none}
 body.det-abierto{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.tl-more-hand,.footer-logo{animation:none}}
+
+/* Fotos al inicio de secciones */
+.sec-foto{position:relative;width:min(300px,78vw);aspect-ratio:4/5;margin:0 auto 34px;border-radius:999px 999px 18px 18px;overflow:hidden;padding:0;box-shadow:0 22px 50px -20px rgba(42,11,51,.55);animation:levitate 7s ease-in-out infinite}
+.sec-foto::after{content:'';position:absolute;inset:8px;border-radius:999px 999px 12px 12px;border:1.5px solid rgba(243,220,142,.85);pointer-events:none}
+.sec-foto img{width:100%;height:100%;object-fit:cover;display:block}
+#ubicacion .sec-foto{aspect-ratio:4/3;border-radius:18px;width:min(320px,82vw)}
+#ubicacion .sec-foto::after{border-radius:12px}
 /* 10. Script/foil sin cortes */
 .heading .w,.heading-sm .w{padding:.22em .45em;margin:-.22em -.45em;line-height:1.25}
 .foil-txt,.env-title{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -1094,6 +1101,7 @@ body.det-abierto{overflow:hidden}
 
   <!-- NUESTRAS FAMILIAS -->
   <section id="familias" class="sec rv" style="text-align:center">
+    <figure class="sec-foto"><img src="sec-playa.jpg" alt="Norma y Jorge en la playa" style="object-position:50% 30%"></figure>
     <span class="eyebrow" style="color:var(--sage)">Con la bendición de</span>
     <h2 class="heading-sm">Nuestras Familias</h2>
     <div class="orn" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
@@ -1108,6 +1116,7 @@ body.det-abierto{overflow:hidden}
 
   <!-- UBICACIÓN -->
   <section id="ubicacion" class="sec rv" style="text-align:center">
+    <figure class="sec-foto"><img src="sec-manos.jpg" alt="Las manos de Norma y Jorge con el anillo" style="object-position:50% 50%"></figure>
     <span class="eyebrow">Dónde Celebramos</span>
     <h2 class="heading-sm">Ubicación</h2>
     <p class="sub" style="margin-top:6px;color:var(--gold);font-weight:600">San Diego, California</p>
@@ -1290,6 +1299,7 @@ body.det-abierto{overflow:hidden}
 
   <!-- RSVP -->
   <section id="rsvp" class="sec rsvp-section rv" style="text-align:center">
+    <figure class="sec-foto"><img src="sec-pie.jpg" alt="Norma y Jorge" style="object-position:50% 20%"></figure>
     <div class="rsvp-card">
       <svg class="rsvp-corner rsvp-corner--tl" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="var(--accent)" stroke-width=".9" opacity=".5"/><circle cx="2" cy="2" r="2.5" fill="var(--accent)" opacity=".4"/></svg>
       <svg class="rsvp-corner rsvp-corner--tr" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="var(--accent)" stroke-width=".9" opacity=".5"/><circle cx="2" cy="2" r="2.5" fill="var(--accent)" opacity=".4"/></svg>
