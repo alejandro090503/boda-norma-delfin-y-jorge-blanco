@@ -998,6 +998,14 @@ body.det-abierto{overflow:hidden}
 .c3d-card img,.c3d-mirror .c3d-card img{filter:grayscale(1) contrast(1.05)}
 .c3d-refl{filter:grayscale(1)}
 #vestimenta .dc-avoid-lbl{letter-spacing:.14em}
+
+/* Pie v4 */
+.footer-hijas{position:relative;width:min(280px,74vw);margin:0 auto 30px;border-radius:999px 999px 18px 18px;overflow:hidden;box-shadow:0 24px 50px -18px rgba(0,0,0,.6);animation:levitate 7s ease-in-out infinite}
+.footer-hijas::after{content:'';position:absolute;inset:8px;border-radius:999px 999px 12px 12px;border:1.5px solid rgba(243,220,142,.85);pointer-events:none}
+.footer-hijas img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;display:block}
+.footer-hijas figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 10px 18px;background:linear-gradient(to top,rgba(30,6,38,.85),transparent);font-family:'Great Vibes',cursive;font-size:34px;line-height:1.2;color:#F7E7CE;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.footer-nj{display:block;width:clamp(170px,48vw,220px);height:auto;margin:6px auto 8px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.5));animation:logoGlow 6s ease-in-out infinite}
+.footer-names-script{font-family:'Great Vibes',cursive!important;font-style:normal!important;font-weight:400!important;font-size:clamp(38px,11vw,50px)!important;line-height:1.25;padding:0 .2em;color:#F7E7CE;white-space:nowrap}
 /* 10. Script/foil sin cortes */
 .heading .w,.heading-sm .w{padding:.22em .45em;margin:-.22em -.45em;line-height:1.25}
 .foil-txt,.env-title{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -1364,19 +1372,10 @@ body.det-abierto{overflow:hidden}
 
   <!-- FOOTER -->
   <footer id="footer">
-    <svg class="footer-logo" viewBox="0 0 300 300" role="img" aria-label="Monograma N y J">
-      <defs><linearGradient id="njGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a6a12"/><stop offset=".3" stop-color="#F3DC8E"/><stop offset=".55" stop-color="#C9A646"/><stop offset=".8" stop-color="#FBEFC0"/><stop offset="1" stop-color="#9A7A1E"/></linearGradient></defs>
-      <g fill="none" stroke="url(#njGold)">
-        <path d="M150 12a138 138 0 0 1 138 133M150 288a138 138 0 0 1-138-133M150 288a138 138 0 0 0 138-133M150 12a138 138 0 0 0-138 133" stroke-width="2.2"/>
-        <circle cx="150" cy="150" r="128" stroke-width="1.2"/>
-      </g>
-      <circle cx="12" cy="150" r="5" fill="url(#njGold)"/><circle cx="288" cy="150" r="5" fill="url(#njGold)"/>
-      <text x="112" y="178" text-anchor="middle" font-family="'Great Vibes',cursive" font-size="132" fill="url(#njGold)">N</text>
-      <text x="196" y="196" text-anchor="middle" font-family="'Great Vibes',cursive" font-size="132" fill="url(#njGold)">J</text>
-      <path d="M150 176c-11-9-20-15-20-24 0-6 5-10 10-10 4 0 8 2 10 6 2-4 6-6 10-6 5 0 10 4 10 10 0 9-9 15-20 24z" fill="url(#njGold)" stroke="#6b5021" stroke-width=".6"/>
-    </svg>
+    <figure class="footer-hijas"><img src="hijas.jpg" alt="Nuestras hijas"><figcaption>Nuestro para siempre</figcaption></figure>
+    <img class="footer-nj" src="nj-oro.png" alt="Monograma N y J">
     <p class="footer-con">Con amor</p>
-    <div class="footer-names">Norma y Jorge</div>
+    <div class="footer-names footer-names-script">Norma y Jorge</div>
     <div class="footer-date">05 · Diciembre · 2026</div>
     <div class="footer-hr"></div>
     <a href="https://www.instagram.com/elysium.invitaciones" target="_blank" rel="noopener" class="footer-credit rv">@elysium.invitaciones</a>
