@@ -993,6 +993,11 @@ body.det-abierto{overflow:hidden}
 .sec-foto img{width:100%;height:100%;object-fit:cover;display:block}
 #ubicacion .sec-foto{aspect-ratio:4/3;border-radius:18px;width:min(320px,82vw)}
 #ubicacion .sec-foto::after{border-radius:12px}
+
+/* Carrusel en blanco y negro */
+.c3d-card img,.c3d-mirror .c3d-card img{filter:grayscale(1) contrast(1.05)}
+.c3d-refl{filter:grayscale(1)}
+#vestimenta .dc-avoid-lbl{letter-spacing:.14em}
 /* 10. Script/foil sin cortes */
 .heading .w,.heading-sm .w{padding:.22em .45em;margin:-.22em -.45em;line-height:1.25}
 .foil-txt,.env-title{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -1074,7 +1079,7 @@ body.det-abierto{overflow:hidden}
   <!-- CUENTA REGRESIVA -->
   <section id="cd-section" class="sec-sm rv" style="text-align:center">
     <h2 class="heading-sm">Nuestro gran día es en</h2>
-    <div class="cd-elegant">
+    <div class="card" style="max-width:380px;margin:0 auto">
       <div class="cd-row">
         <div class="cd-unit">
           <span class="cd-value" id="cdDias">000</span>
@@ -1183,21 +1188,20 @@ body.det-abierto{overflow:hidden}
   </section>
 
   <!-- DRESS CODE -->
-  <section id="vestimenta" class="sec rv" style="text-align:center;background:var(--surface)">
+<section id="vestimenta" class="sec rv" style="text-align:center;background:var(--surface)">
     <span class="eyebrow">Código de Vestimenta</span>
-    <h2 class="heading-sm">Etiqueta</h2>
-    <div class="orn"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
-    <div class="dc-figs">
-      <div class="dc-fig"><img src="caballero.png?v=2" alt="Caballero con traje formal"></div>
-      <div class="dc-fig"><img src="dama.png?v=2" alt="Dama con vestido formal"></div>
+    <h2 class="heading-sm">Formal</h2>
+    <div class="orn" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
+    <p class="dc-note">Acompáñanos vestido para la ocasión</p>
+    <div class="dc-figures">
+      <div class="dc-fig"><img src="dc-caballero.png" alt="Ilustración de caballero con traje formal"><span class="dc-fig-label">Caballeros</span></div>
+      <div class="dc-fig"><img src="dc-dama.png" alt="Ilustración de dama con vestido largo formal"><span class="dc-fig-label">Damas</span></div>
     </div>
-    <div class="dc-code"><span class="dc-code-lbl">Dress Code</span><span class="dc-code-val">Formal</span></div>
     <div class="dc-avoid-wrap">
       <div class="dc-avoid-head">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke="#b4271a" stroke-width="1.7"/><line x1="5.4" y1="5.4" x2="18.6" y2="18.6" stroke="#b4271a" stroke-width="1.7"/></svg>
-        <span class="dc-avoid-lbl">Tonos a <strong>evitar</strong></span>
+        <span class="dc-avoid-lbl">Por favor <strong>evita</strong> estos colores</span>
       </div>
-      <p class="dc-avoid-clarify">Estos <u>no</u> son colores sugeridos. Con cariño, te pedimos <strong>no</strong> usarlos en tu vestuario.</p>
       <div class="dc-avoid-row">
         <div class="dc-avoid-sw"><div class="dc-avoid-circle x" style="background:#FFFFED;border:1px solid #ddd"></div><span class="dc-avoid-name">Marfil</span></div>
         <div class="dc-avoid-sw"><div class="dc-avoid-circle x" style="background:#FFFFFF;border:1px solid #ddd"></div><span class="dc-avoid-name">Blanco</span></div>
@@ -1207,7 +1211,6 @@ body.det-abierto{overflow:hidden}
       <p class="dc-avoid-msg">El blanco está reservado para la novia y el color púrpura para las damas.</p>
     </div>
   </section>
-
 
   <!-- MESA DE REGALOS -->
   <section id="regalos" class="sec rv" style="text-align:center">
@@ -1256,21 +1259,24 @@ body.det-abierto{overflow:hidden}
   <!-- ÁLBUM -->
   <section id="salbum" class="sec" style="text-align:center">
     <span class="eyebrow rv" style="color:var(--sage)">Nuestros Momentos</span>
-    <h2 class="heading-sm rv">Álbum</h2>
+    <h2 class="heading-sm rv">Nuestra Historia</h2>
     <div class="orn rv" style="margin-top:16px"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <div class="c3d-scene" id="c3dScene" aria-label="Galería de fotos — arrastra para girar">
       <div class="c3d-floor" aria-hidden="true"></div>
       <div class="c3d-mirror" aria-hidden="true"><div class="c3d-ring c3d-ring-m" id="c3dRingM"></div></div>
       <div class="c3d-ring" id="c3dRing">
+        <div class="c3d-card"><img src="n01.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('n01.jpg')"></i></div>
+        <div class="c3d-card"><img src="n02.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('n02.jpg')"></i></div>
+        <div class="c3d-card"><img src="n03.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('n03.jpg')"></i></div>
+        <div class="c3d-card"><img src="n04.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('n04.jpg')"></i></div>
+        <div class="c3d-card"><img src="n05.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('n05.jpg')"></i></div>
         <div class="c3d-card"><img src="h01.jpg" alt="Norma y Jorge con sus hijas"><i class="c3d-refl" style="background-image:url('h01.jpg')"></i></div>
         <div class="c3d-card"><img src="h02.jpg" alt="Norma y Jorge con sus hijas"><i class="c3d-refl" style="background-image:url('h02.jpg')"></i></div>
-        <div class="c3d-card"><img src="h03.jpg" alt="Norma y Jorge con sus hijas"><i class="c3d-refl" style="background-image:url('h03.jpg')"></i></div>
         <div class="c3d-card"><img src="h04.jpg" alt="Norma y Jorge con sus hijas"><i class="c3d-refl" style="background-image:url('h04.jpg')"></i></div>
         <div class="c3d-card"><img src="h05.jpg" alt="Norma y Jorge con sus hijas"><i class="c3d-refl" style="background-image:url('h05.jpg')"></i></div>
         <div class="c3d-card"><img src="h06.jpg" alt="Norma y Jorge con sus hijas"><i class="c3d-refl" style="background-image:url('h06.jpg')"></i></div>
         <div class="c3d-card"><img src="g04.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g04.jpg')"></i></div>
         <div class="c3d-card"><img src="g05.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g05.jpg')"></i></div>
-        <div class="c3d-card"><img src="g06.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('g06.jpg')"></i></div>
         <div class="c3d-card"><img src="m01.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('m01.jpg')"></i></div>
         <div class="c3d-card"><img src="m02.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('m02.jpg')"></i></div>
         <div class="c3d-card"><img src="m03.jpg" alt="Norma y Jorge"><i class="c3d-refl" style="background-image:url('m03.jpg')"></i></div>
