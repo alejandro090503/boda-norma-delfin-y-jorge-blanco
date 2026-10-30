@@ -907,7 +907,7 @@ body,button,input{font-variant-numeric:lining-nums}
 .timeline{margin-top:40px;position:relative;padding:18px 0 6px;min-height:300px}
 .tl-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:visible}
 .tl-svg-bg{stroke:rgba(247,231,206,.22);stroke-width:1;fill:none;stroke-dasharray:2 5}
-.tl-svg-path{stroke:#D4AF37;stroke-width:1.6;stroke-linecap:round;fill:none;filter:drop-shadow(0 0 6px rgba(212,175,55,.45))}
+.tl-svg-path{transition:stroke-dashoffset .25s linear;stroke:#D4AF37;stroke-width:1.6;stroke-linecap:round;fill:none;filter:drop-shadow(0 0 6px rgba(212,175,55,.45))}
 .tl-row{position:relative;z-index:1;min-height:158px;display:flex;align-items:center;margin-bottom:14px}
 .tl-row[data-side="left"]{padding-left:50px;padding-right:34%;justify-content:flex-start;text-align:left}
 .tl-row[data-side="right"]{padding-right:50px;padding-left:34%;justify-content:flex-end;text-align:right}
@@ -1011,6 +1011,16 @@ body.det-abierto{overflow:hidden}
 .sec-foto,.footer-hijas{border-radius:18px!important}
 .sec-foto::after,.footer-hijas::after{border-radius:12px!important}
 .invite-cita{font-family:'Cormorant Garamond',serif!important;font-style:normal!important;font-weight:700;font-size:15px!important;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)!important;margin-top:-6px!important}
+
+/* Itinerario premium: halo + perla viajera */
+.tl-svg-halo{stroke:#F3DC8E;stroke-width:7;stroke-linecap:round;fill:none;opacity:.28;filter:blur(4px);transition:stroke-dashoffset .25s linear}
+.tl-svg-path{stroke:url(#tlPearlG);stroke:#E8C766;stroke-width:2.2!important}
+.tl-pearl{opacity:0;transition:opacity .4s,transform .25s linear}
+.tl-pearl circle:first-child{animation:pearlPulse 1.8s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes pearlPulse{0%,100%{transform:scale(.85);opacity:.85}50%{transform:scale(1.25);opacity:1}}
+.tl-row.on .tl-dot{animation:dotPop .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes dotPop{0%{transform:scale(.4)}100%{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.tl-pearl{display:none}}
 /* 10. Script/foil sin cortes */
 .heading .w,.heading-sm .w{padding:.22em .45em;margin:-.22em -.45em;line-height:1.25}
 .foil-txt,.env-title{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -1179,7 +1189,7 @@ body.det-abierto{overflow:hidden}
     <h2 class="heading-sm">Itinerario</h2>
     <div class="orn"><div class="orn-line"></div><div class="orn-diamond-sm"></div><div class="orn-diamond"></div><div class="orn-diamond-sm"></div><div class="orn-line"></div></div>
     <div class="timeline" id="tlWrap">
-      <svg class="tl-svg" id="tlSvg" preserveAspectRatio="none" aria-hidden="true"><path class="tl-svg-bg" id="tlPathBg"/><path class="tl-svg-path" id="tlPath"/></svg>
+      <svg class="tl-svg" id="tlSvg" preserveAspectRatio="none" aria-hidden="true"><defs><radialGradient id="tlPearlG"><stop offset="0" stop-color="#FFF8E1"/><stop offset=".35" stop-color="#F3DC8E"/><stop offset=".7" stop-color="rgba(212,175,55,.45)"/><stop offset="1" stop-color="rgba(212,175,55,0)"/></radialGradient></defs><path class="tl-svg-bg" id="tlPathBg"/><path class="tl-svg-halo" id="tlHalo"/><path class="tl-svg-path" id="tlPath"/><g id="tlPearl" class="tl-pearl"><circle r="16" fill="url(#tlPearlG)"/><circle r="3.6" fill="#FFF8E1"/></g></svg>
       <div class="tl-row" data-side="left"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
         <div class="tl-row-inner"><p class="tl-t">12:00 PM</p><p class="tl-ev">Ceremonia Religiosa</p><p class="tl-de">Templo de San Diego</p><button class="tl-more" type="button" onclick="abrirDetalle(this)" data-hora="12:00 PM" data-titulo="Ceremonia Religiosa" data-lugar="Templo de San Diego" data-texto="Te pedimos llegar 30 minutos antes de la ceremonia." data-link="" data-linktxt=""><span class="tl-more-hand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V12m0-1a1.5 1.5 0 0 1 3 0v4.5a5.5 5.5 0 0 1-5.5 5.5h-1a5.5 5.5 0 0 1-5.5-5.5V13a1.5 1.5 0 0 1 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="tl-more-txt">Toca para abrir</span></button></div></div>
       <div class="tl-row" data-side="right"><div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
@@ -2194,15 +2204,13 @@ document.addEventListener('ely:open',function(){setTimeout(function(){
     svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('width',W);svg.setAttribute('height',H);
     var pts=rows.map(function(r){var b=r.getBoundingClientRect();return{x:r.dataset.side==='left'?29:W-29,y:(b.top-rect.top)+b.height/2};});
     var d='M '+pts[0].x+' '+pts[0].y;for(var i=1;i<pts.length;i++){var a=pts[i-1],c=pts[i],m=(a.y+c.y)/2;d+=' C '+a.x+' '+m+', '+c.x+' '+m+', '+c.x+' '+c.y;}
-    path.setAttribute('d',d);bg.setAttribute('d',d);var len=path.getTotalLength();path.style.strokeDasharray=len;path.style.strokeDashoffset=len;data={len:len};}
+    path.setAttribute('d',d);bg.setAttribute('d',d);var halo=document.getElementById('tlHalo');halo.setAttribute('d',d);var len=path.getTotalLength();[path,halo].forEach(function(e){e.style.strokeDasharray=len;e.style.strokeDashoffset=len;});data={len:len};}
   build();window.addEventListener('resize',function(){setTimeout(build,150);});
-  function prog(p){if(!data)return;path.style.strokeDashoffset=data.len*(1-p);var n=Math.ceil(p*rows.length);rows.forEach(function(r,i){r.classList.toggle('on',i<n);});}
-  if(window.ScrollTrigger&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-    ScrollTrigger.create({trigger:wrap,start:'top 82%',end:'bottom 62%',scrub:.6,onUpdate:function(s){prog(s.progress);}});
-  }
-  // respaldo: si el scroll no dispara, se revela al pasar por la sección
-  function chk(){var b=wrap.getBoundingClientRect();if(b.top<innerHeight*.5&&!rows[rows.length-1].classList.contains('on'))prog(1);}
-  window.addEventListener('scroll',chk,{passive:true});
+  function prog(p){if(!data)return;var off=data.len*(1-p);path.style.strokeDashoffset=off;document.getElementById('tlHalo').style.strokeDashoffset=off;var pt=path.getPointAtLength(data.len*p),pr=document.getElementById('tlPearl');pr.setAttribute('transform','translate('+pt.x+','+pt.y+')');pr.style.opacity=(p>0.005&&p<0.995)?1:0;var wb=wrap.getBoundingClientRect(),tip=wb.top+p*wb.height;rows.forEach(function(r){var rb=r.getBoundingClientRect();r.classList.toggle('on',rb.top+rb.height/2<=tip+4);});}
+  // se va llenando con el scroll: la punta del camino sigue al centro de la pantalla
+  var tk=false;function onScroll(){if(tk)return;tk=true;requestAnimationFrame(function(){tk=false;
+    var b=wrap.getBoundingClientRect(),p=(innerHeight*0.62-b.top)/b.height;prog(Math.max(0,Math.min(1,p)));});}
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
 },300);});
 </script>
 <script>
