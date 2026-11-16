@@ -1036,6 +1036,13 @@ body.det-abierto{overflow:hidden}
 .tl-row.on .tl-dot{animation:dotPop .6s cubic-bezier(.34,1.56,.64,1)}
 @keyframes dotPop{0%{transform:scale(.4)}100%{transform:scale(1)}}
 @media(prefers-reduced-motion:reduce){.tl-pearl{display:none}}
+
+/* Fotos fijas (sin temblor) */
+#inv-photo,#inv-photo-wrap::after{animation:none!important;transform:none!important}
+.sec-foto,.footer-hijas,.loc-card,.loc-photo{animation:none!important;translate:none!important;rotate:none!important}
+.sec-foto img,.footer-hijas img,.loc-photo img,#inv-photo{backface-visibility:hidden;-webkit-backface-visibility:hidden;image-rendering:auto}
+.c3d-card{will-change:auto}
+.c3d-card img{backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(0)}
 /* 10. Script/foil sin cortes */
 .heading .w,.heading-sm .w{padding:.22em .45em;margin:-.22em -.45em;line-height:1.25}
 .foil-txt,.env-title{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -1570,7 +1577,7 @@ function initMain(){
 
   var invWrap=document.getElementById('inv-photo-wrap');
   if(invWrap&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-    gsap.to(invWrap,{y:-9,duration:4,ease:'sine.inOut',repeat:-1,yoyo:true});
+    /* sin flotar: las fotos quedan fijas */
   }
 
   initItinerary();
