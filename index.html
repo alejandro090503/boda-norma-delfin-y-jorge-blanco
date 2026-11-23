@@ -1385,7 +1385,7 @@ body.det-abierto{overflow:hidden}
         <div class="rsvp-boxes" id="rsvp-boxes" style="display:none">
           <div class="rsvp-box" id="rsvp-pases-display"><span class="rsvp-box-label" id="rsvp-pases-label">Pases</span><span class="rsvp-box-num" id="rsvp-pases-num">1</span></div>
         </div>
-        <p class="rsvp-dl">Por favor confirma antes del 20 de noviembre de 2026</p>
+        <p class="rsvp-dl">Por favor confirma antes del 30 de noviembre de 2026</p>
         <div id="rsvp-bandeja">
           <div class="rsvp-personas" id="rsvp-personas"></div>
           <button class="btn-rsvp" id="rsvp-confirm-btn" type="button"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg><span id="rsvp-btn-text">Confirmar asistencia</span></button>
@@ -1399,7 +1399,7 @@ body.det-abierto{overflow:hidden}
         <p id="rsvp-feedback"></p>
         <div class="rsvp-aviso">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
-          <p>Si no recibimos tu respuesta antes del <strong>20 de noviembre de 2026</strong>, entenderemos que no podrás acompañarnos y tu lugar quedará disponible para otro invitado.</p>
+          <p>Si no recibimos tu respuesta antes del <strong>30 de noviembre de 2026</strong>, entenderemos que no podrás acompañarnos y tu lugar quedará disponible para otro invitado.</p>
         </div>
       </div>
     </div>
@@ -2165,7 +2165,7 @@ function initHospMap(){
 /* 9. RSVP · Panel de Invitados (nombres asignados) */
 function initRsvpPK(){
   var API='https://panel-invitados.vercel.app/api/confirmar',URL_BODA='https://boda-norma-delfin-y-jorge-blanco.vercel.app';
-  var DEADLINE=new Date('2026-11-20T23:59:59-08:00'); /* 20 nov 2026: los actuales quedan bloqueados, solo las nuevas confirman */
+  var DEADLINE=new Date('2026-11-30T23:59:59-08:00'); /* 30 nov 2026: los actuales quedan bloqueados, solo las nuevas confirman */
   var qs=new URLSearchParams(location.search);
   /* WhatsApp corta la URL en el primer espacio: el panel manda ?i= (base64url de "nombre|pases|menores"). ?para= queda de respaldo. */
   function decodeInvite(tok){
